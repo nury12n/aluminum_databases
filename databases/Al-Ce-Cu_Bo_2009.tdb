@@ -1,0 +1,415 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ AL-CE-CU
+$ H. Bo, S. Jin, L.G. Zhang, X.M. Chen, H.M. Chen, L.B. Liu, F. Zheng
+$ Z.P. Jin, Journal of Alloys and Compounds 484 (2009) 286-295
+$ doi:10.1016/j.jallcom.2009.04.083
+$
+$ AL-CE system from M.C. Gao et al, Metall. Mater. Trans. A 36 (2005) 3269
+$    Al-Ce_Gao_2005.tdb
+$
+$ AL-CU system from V.T. Witusiewicz, U. Hecht, S.G. Fries, S. Rev,
+$       J. Alloys Compd. 385 (2004) 133-143
+$
+$ Phases
+$   Liquid      - (Al,Ce,Cu)
+$   FCC_A1      - (Al,Ce,Cu)(Va)
+$   BCC_A2      - (Al,Ce,Cu)(Va)3
+$   AL4CE       - (Al)4(Ce)
+$   AL11CE3     - (Al)11(Ce)3
+$   BETA_AL3CE  - (Al)3(Ce)
+$   ALPHA_AL3CE - (Al)3(Ce)
+$   AL2CE       - (Al)2(Ce)
+$   ALCE        - (Al)(Ce)
+$   ALCE2       - (Al)(Ce)2
+$   BETA_ALCE3  - (Al)(Ce)3
+$   ALPHA_ALCE3 - (Al)(Ce)3
+$   THETA       - (Al)2(Al,Cu)
+$   ETA         - (Al,Cu)(Cu)
+$   EPSILON     - (Al,Cu)(Cu)
+$   XI          - (Al)9(Cu)11
+$   DELTA       - (Al)2(Cu)3
+$   GAMMA_D83   - (Al)4(Al,Cu)(Cu)8
+$   GAMMA       - (Al)4(Al,Cu)(Cu)8
+$   CU6CE       - (Cu)6(Ce)
+$   CU5CE       - (Cu)5(Ce)
+$   CU4CE       - (Cu)4(Ce)
+$   CU2CE       - (Cu)2(Ce)
+$   CUCE        - (Cu)(Ce)
+$   TAU1        - (Al)0.6154(Ce)0.0769(Cu)0.3077
+$   TAU2        - (Al,Cu)0.8947(Ce)0.1053
+$   TAU3        - (Al,Cu)0.8(Ce)0.2
+$   TAU4        - (Al,Cu)0.3333(Ce)0.3333(Cu)0.3334
+$   TAU5        - (Al)0.2(Ce)0.4(Cu)0.4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT CE   FCC_A1                    1.4011E+02  0.0000E+00  0.0000E+00 !
+ELEMENT CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01 !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+ -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+
+$ Ce
+$ -------------------------------------
+ FUNCTION GHSERCE  298.15
+ -7160.519+84.23022*T-22.3664*T*LN(T)-6.7103E-3*T**2-0.320773E-6*T**3
+ -18117*T**(-1);  1000.00 Y
+ -79678.506+659.4604*T-101.3224803*T*LN(T)+26.046487E-3*T**2-1.930297E-6*T**3
+ +11531707*T**(-1);  2000.00 Y
+ -14198.639+190.370192*T-37.6978*T*LN(T);  4000.00 N !
+ 
+FUNCTION GBCCCE   298.15
+ -1354.69-5.21501*T-7.7305867*T*LN(T)-29.098402E-3*T**2+4.784299E-6*T**3
+ -196303*T**(-1);  1000.00 Y
+ -12101.106+187.449688*T-37.6142*T*LN(T);  1072.00 Y
+ -11950.375+186.333811*T-37.4627992*T*LN(T)-0.057145E-3*T**2+0.002348E-6*T**3
+ -25897*T**(-1);  4000.00 N !
+ 
+FUNCTION GLIQCE   298.15
+ 4117.865-11.423898*T-7.5383948*T*LN(T)-29.36407E-3*T**2+4.827734E-6*T**3
+ -198834*T**(-1);  1000.00 Y
+ -6730.605+183.023193*T-37.6978*T*LN(T);  4000.00 N !
+ 
+FUNCTION GHCPCE 298.15 300+GHSERCE; 4000 N !
+
+$ Cu
+$ -------------------------------------
+FUNCTION GHSERCU  298.15
+ -7770.458+130.485235*T-24.112392*T*LN(T)-2.65684E-3*T**2+0.129223E-6*T**3
+ +52478*T**(-1);  1357.77 Y
+ -13542.026+183.803828*T-31.38*T*LN(T)+364.167E27*T**(-9);  3200.00 N !
+ 
+FUNCTION GBCCCU 298.15 4017-1.255*T+GHSERCU; 3200 N !
+ 
+FUNCTION GHCPCU 298.15 600+0.2*T+GHSERCU; 3200 N !
+ 
+FUNCTION GLIQCU 298.15 12964.735-9.511904*T-584.89E-23*T**7+GHSERCU; 1357.77 Y
+ -46.545+173.881484*T-31.38*T*LN(T); 3200 N !
+
+
+TYPE_DEFINITION % SEQ * !
+DEFINE_SYSTEM_DEFAULT ELEMENT 2 !
+DEFAULT_COMMAND DEFINE_SYSTEM_ELEMENT /- VA !
+
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL,CE,CU : !
+
+PHASE FCC_A1 % 2 1 1 !
+CONSTITUENT FCC_A1 : AL,CE,CU : VA : !
+
+PHASE BCC_A2 % 2 1 3 !
+CONSTITUENT BCC_A2 : AL,CE,CU : VA : !
+
+PHASE AL4CE % 2 0.8 0.2 !
+CONSTITUENT AL4CE : AL : CE : !
+
+PHASE AL11CE3 % 2 0.7857 0.2143 !
+CONSTITUENT AL11CE3 : AL : CE : !
+
+PHASE BETA_AL3CE % 2 0.75 0.25 !
+CONSTITUENT BETA_AL3CE : AL : CE : !
+
+PHASE ALPHA_AL3CE % 2 0.75 0.25 !
+CONSTITUENT ALPHA_AL3CE : AL : CE : !
+
+PHASE AL2CE % 2 0.6667 0.3333 !
+CONSTITUENT AL2CE : AL : CE : !
+
+PHASE ALCE % 2 0.5 0.5 !
+CONSTITUENT ALCE : AL : CE : !
+
+PHASE ALCE2 % 2 0.3333 0.6667 !
+CONSTITUENT ALCE2 : AL : CE : !
+
+PHASE BETA_ALCE3 % 2 0.25 0.75 !
+CONSTITUENT BETA_ALCE3 : AL : CE : !
+
+PHASE ALPHA_ALCE3 % 2 0.25 0.75 !
+CONSTITUENT ALPHA_ALCE3 : AL : CE : !
+
+PHASE THETA % 2 2 1 !
+CONSTITUENT THETA : AL : AL,CU : !
+
+PHASE ETA % 2 1 1 !
+CONSTITUENT ETA : AL,CU : CU : !
+
+PHASE EPSILON % 2 1 1 !
+CONSTITUENT EPSILON : AL,CU : CU : !
+
+PHASE XI % 2 9 11 !
+CONSTITUENT XI : AL : CU : !
+
+PHASE DELTA % 2 2 3 !
+CONSTITUENT DELTA : AL : CU : !
+
+PHASE GAMMA_D83 % 3 4 1 8 !
+CONSTITUENT GAMMA_D83 : AL : AL,CU : CU : !
+
+PHASE GAMMA % 3 4 1 8 !
+CONSTITUENT GAMMA : AL : AL,CU : CU : !
+
+PHASE CU6CE % 2 0.857 0.143 !
+CONSTITUENT CU6CE : CU : CE : !
+
+PHASE CU5CE % 2 0.833 0.167 !
+CONSTITUENT CU5CE : AL,CU : CE : !
+
+PHASE CU4CE % 2 0.8 0.2 !
+CONSTITUENT CU4CE : AL,CU : CE : !
+
+PHASE CU2CE % 2 0.667 0.333 !
+CONSTITUENT CU2CE : CU : CE : !
+
+PHASE CUCE % 2 0.5 0.5 !
+CONSTITUENT CUCE : CU : CE : !
+
+PHASE TAU1 % 3 0.6152 0.0769 0.3077 !
+CONSTITUENT TAU1 : AL : CE : CU : !
+
+PHASE TAU2 % 2 0.8947 0.1053 !
+CONSTITUENT TAU2 : AL,CU : CE : !
+
+PHASE TAU3 % 2 0.8 0.2 !
+CONSTITUENT TAU3 : AL,CU : CE : !
+
+PHASE TAU4 % 3 0.3333 0.3333 0.3334 !
+CONSTITUENT TAU4 : AL : CE : CU : !
+
+PHASE TAU5 % 3 0.2 0.4 0.4 !
+CONSTITUENT TAU5 : AL : CE : CU : !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    AL                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N !
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N !
+PARAM G(BCC_A2,AL:VA;0) 298.15 GBCCAL; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    CE                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,CE;0) 298.15 GLIQCE; 6000 N !
+PARAM G(FCC_A1,CE:VA;0) 298.15 GHSERCE; 6000 N !
+PARAM G(BCC_A2,CE:VA;0) 298.15 GBCCCE; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    CU                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,CU;0) 298.15 GLIQCU; 6000 N !
+PARAM G(FCC_A1,CU:VA;0) 298.15 GHSERCU; 6000 N !
+PARAM G(BCC_A2,CU:VA;0) 298.15 GBCCCU; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                  AL-CE                                   $
+$ M.C. Gao et al, Metall. Mater. Trans. A 36 (2005) 3269                   $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$$ LIQUID $$
+PARAM G(LIQUID,AL,CE;0) 298.15 -130371 + 38.523*T; 6000 N !
+PARAM G(LIQUID,AL,CE;1) 298.15 -36330 + 6.362*T; 6000 N !
+PARAM G(LIQUID,AL,CE;2) 298.15 -9208 + 4.065*T; 6000 N !
+
+$$ FCC_A1 $$
+PARAM G(FCC_A1,AL,CE:VA;0) 298.15 -62851 + 30.556*T; 6000 N !
+
+$$ BCC_A2 $$
+PARAM G(BCC_A2,AL,CE:VA;0) 298.15 -93683 + 37.261*T; 6000 N !
+
+$$ AL4CE $$
+PARAM G(AL4CE,AL:CE;0) 298.15 0.8*GHSERAL + 0.2*GHSERCE +
+    -29557 + 2.001*T; 6000 N !
+
+$$ AL11CE3 $$
+PARAM G(AL11CE3,AL:CE;0) 298.15 0.7857*GHSERAL + 0.2143*GHSERCE +
+    -42745 + 11.159*T; 6000 N !
+
+$$ BETA_AL3CE $$
+PARAM G(BETA_AL3CE,AL:CE;0) 298.15 0.75*GHSERAL + 0.25*GHSERCE + 
+    -44437 + 9.867*T; 6000 N !
+
+$$ ALPHA_AL3CE $$
+PARAM G(ALPHA_AL3CE,AL:CE;0) 298.15 0.75*GHSERAL + 0.25*GHSERCE + 
+    -45421 + 10.658*T; 6000 N !
+
+$$ AL2CE $$
+PARAM G(AL2CE,AL:CE;0) 298.15 0.6667*GHSERAL + 0.3333*GHSERCE + 
+    -50060 + 9.889*T; 6000 N !
+
+$$ ALCE $$
+PARAM G(ALCE,AL:CE;0) 298.15 0.5*GHSERAL + 0.5*GHSERCE + 
+    -48000 + 14.468*T; 6000 N !
+
+$$ ALCE2 $$
+PARAM G(ALCE2,AL:CE;0) 298.15 0.3333*GHSERAL + 0.6667*GHSERCE + 
+    -24816 + 0.714*T; 6000 N !
+
+$$ BETA_ALCE3 $$
+PARAM G(BETA_ALCE3,AL:CE;0) 298.15 0.25*GHSERAL + 0.75*GHSERCE + 
+    -27935 + 9.816*T; 6000 N !
+
+$$ ALPHA_ALCE3 $$
+PARAM G(ALPHA_ALCE3,AL:CE;0) 298.15 0.25*GHSERAL + 0.75*GHSERCE + 
+    -28226 + 10.372*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                  AL-CU                                   $
+$ V.T. Witusiewicz, U. Hecht, S.G. Fries, S. Rev,                          $
+$ J. Alloys Compd. 385 (2004) 133-143                                      $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$$ LIQUID $$
+PARAM G(LIQUID,AL,CU;0) 298.15 -67094 + 8.555*T; 6000 N !
+PARAM G(LIQUID,AL,CU;1) 298.15 32148 - 7.118*T; 6000 N !
+PARAM G(LIQUID,AL,CU;2) 298.15 5915 - 5.889*T; 6000 N !
+PARAM G(LIQUID,AL,CU;3) 298.15 -8175 + 6.049*T; 6000 N !
+
+$$ FCC_A1 $$
+PARAM G(FCC_A1,AL,CU:VA;0) 298.15 -53520 + 2*T; 6000 N !
+PARAM G(FCC_A1,AL,CU:VA;1) 298.15 38590 - 2*T; 6000 N !
+PARAM G(FCC_A1,AL,CU:VA;2) 298.15 1170; 6000 N !
+
+$$ BCC_A2 $$
+PARAM G(BCC_A2,AL,CU:VA;0) 298.15 -73554 + 4*T; 6000 N !
+PARAM G(BCC_A2,AL,CU:VA;1) 298.15 51500 - 11.84*T; 6000 N !
+
+$$ THETA $$
+PARAM G(THETA,AL:AL;0) 298.15 3*GHSERAL + 30249 - 14.439*T; 6000 N !
+PARAM G(THETA,AL:CU;0) 298.15 2*GHSERAL + GHSERCU + 
+        -47406 + 6.75*T; 6000 N !
+PARAM G(THETA,AL:AL,CU;0) 298.15 2211; 6000 N !
+
+$$ ETA $$
+PARAM G(ETA,AL:CU;0) 298.15 GHSERAL + GHSERCU + 
+        -40560 + 3.14*T; 6000 N !
+PARAM G(ETA,CU:CU;0) 298.15 2*GHSERCU + 8034 - 2.51*T; 6000 N !
+PARAM G(ETA,AL,CU:CU;0) 298.15 -25740 - 20*T; 6000 N !
+
+$$ EPSILON $$
+PARAM G(EPSILON,AL:CU;0) 298.15 GHSERAL + GHSERCU + 
+        -36976 + 1.2*T; 6000 N !
+PARAM G(EPSILON,CU:CU;0) 298.15 2*GHSERCU + 8034 - 2.51*T; 6000 N !
+PARAM G(EPSILON,AL,CU:CU;0) 298.15 7600 - 24*T; 6000 N !
+PARAM G(EPSILON,AL,CU:CU;1) 298.15 -72000; 6000 N !
+
+$$ XI $$
+PARAM G(XI,AL:CU;0) 298.15 9*GHSERAL + 11*GHSERCU + 
+        -420000 + 18*T; 6000 N !
+
+$$ DELTA $$
+PARAM G(DELTA,AL:CU;0) 298.15 2*GHSERAL + 3*GHSERCU + 
+        -106700 + 3*T; 6000 N !
+
+$$ GAMMA_D83 $$
+PARAM G(GAMMA_D83,AL:AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU + 
+        -277739 + 215*T - 30*T*LOG(T); 6000 N !
+PARAM G(GAMMA_D83,AL:CU:CU;0) 298.15 4*GHSERAL + 9*GHSERCU + 
+        -280501 + 379.6*T - 52*T*LOG(T); 6000 N !
+
+$$ GAMMA $$
+PARAM G(GAMMA,AL:AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU + 
+        -219258 - 45.5*T; 6000 N !
+PARAM G(GAMMA,AL:CU:CU;0) 298.15 4*GHSERAL + 9*GHSERCU + 
+        -200460 - 58.5*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                  CE-CU                                   $
+$ H. Bo, S. Jin, L.G. Zhang, X.M. Chen, H.M. Chen, L.B. Liu, F. Zheng      $
+$ Z.P. Jin, Journal of Alloys and Compounds 484 (2009) 286-295             $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$$ LIQUID $$
+PARAM G(LIQUID,CE,CU;0) 298.15 -44488 - 0.398*T; 6000 N !
+PARAM G(LIQUID,CE,CU;1) 298.15 34088 - 6.247*T; 6000 N !
+PARAM G(LIQUID,CE,CU;2) 298.15 -20951 + 10.387*T; 6000 N !
+
+$$ FCC_A1 $$
+PARAM G(FCC_A1,CE,CU:VA;0) 298.15 25019; 6000 N !
+
+$$ BCC_A2 $$
+PARAM G(BCC_A2,CE,CU:VA;0) 298.15 -8545; 6000 N !
+
+$$ CU6CE $$
+PARAM G(CU6CE,CU:CE;0) 298.15 0.857*GHSERCU + 0.143*GHSERCE +
+        -8964 - 2.05*T; 6000 N !
+
+$$ CU5CE $$
+PARAM G(CU5CE,CU:CE;0) 298.15 0.833*GHSERCU + 0.167*GHSERCE +
+        -10290 - 1.5*T; 6000 N !
+
+$$ CU4CE $$
+PARAM G(CU4CE,CU:CE;0) 298.15 0.8*GHSERCU + 0.2*GHSERCE +
+        -11640 - 1.174*T; 6000 N !
+
+$$ CU2CE $$
+PARAM G(CU2CE,CU:CE;0) 298.15 0.667*GHSERCU + 0.333*GHSERCE +
+        -11440 - 4.514*T; 6000 N !
+
+$$ CUCE $$
+PARAM G(CUCE,CU:CE;0) 298.15 0.5*GHSERCU + 0.5*GHSERCE +
+        -9420 - 3.5*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                AL-CE-CU                                  $
+$ H. Bo, S. Jin, L.G. Zhang, X.M. Chen, H.M. Chen, L.B. Liu, F. Zheng      $
+$ Z.P. Jin, Journal of Alloys and Compounds 484 (2009) 286-295             $
+$                                                                          $
+$ NOTE: Some of the parameters for CU5CE, CU4CE and the TAU phases are     $
+$ binary parameters, but I include them here since they are fitted for     $
+$ the ternary system and do not play a role in their respective binary     $
+$ systems                                                                  $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$$ LIQUID $$
+PARAM G(LIQUID,AL,CE,CU;0) 298.15 -130000; 6000 N !
+
+$$ CU5CE $$
+PARAM G(CU5CE,AL:CE;0) 298.15 0.833*GHSERAL + 0.167*GHSERCE +
+        -17260 + 0.8*T; 6000 N !
+PARAM G(CU5CE,AL,CU:CE;0) 298.15 -66700 + 0.6*T; 6000 N !
+
+$$ CU4CE $$
+PARAM G(CU4CE,AL:CE;0) 298.15 0.8*GHSERAL + 0.2*GHSERCE +
+        -22000 + 0.7*T; 6000 N !
+PARAM G(CU4CE,AL,CU:CE;0) 298.15 -65000 + 0.7*T; 6000 N !
+
+$$ TAU1 $$
+PARAM G(TAU1,AL:CE:CU;0) 298.15 0.6154*GHSERAL + 0.0769*GHSERCE + 
+        0.3077*GHSERCU - 30000 + 3*T; 6000 N !
+
+$$ TAU2 $$
+PARAM G(TAU2,AL:CE;0) 298.15 0.8947*GHSERAL + 0.1053*GHSERCE +
+        -13200 + 2.5*T; 6000 N !
+PARAM G(TAU2,CU:CE;0) 298.15 0.8947*GHSERCU + 0.1053*GHSERCE +
+        -4000 + 0.8*T; 6000 N !
+PARAM G(TAU2,AL,CU:CE;0) 298.15 -75000 + 0.8*T; 6000 N !
+
+$$ TAU3 $$
+PARAM G(TAU3,AL:CE;0) 298.15 0.8*GHSERAL + 0.2*GHSERCE +
+        -29557 + 2.1*T; 6000 N !
+PARAM G(TAU3,CU:CE;0) 298.15 0.8*GHSERCU + 0.2*GHSERCE +
+        -2000 + 0.3*T; 6000 N !
+PARAM G(TAU3,AL,CU:CE;0) 298.15 -68500 + 0.4*T; 6000 N !
+
+$$ TAU4 $$
+PARAM G(TAU4,AL:CE:CU;0) 298.15 0.3333*GHSERAL + 0.3333*GHSERCE + 
+        0.3334*GHSERCU - 34600 + 0.4*T; 6000 N !
+
+$$ TAU5 $$
+PARAM G(TAU5,AL:CE:CU;0) 298.15 0.2*GHSERAL + 0.4*GHSERCE + 
+        0.4*GHSERCU - 30000 + 0.2*T; 6000 N !
+

@@ -1,0 +1,183 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ AL-ND
+$ M.C. Gao, N. Unlu, G.J. Shiflet, M. Mihalkovic, M. Widom, Metallurgical
+$ and Materials Transactions A, 36 (2005) 3269
+$ doi:10.1007/s11661-005-0001-y
+$
+$ Phases
+$   Liquid      - (Al,Nd)
+$   FCC_A1      - (Al,Nd)(Va)
+$   BCC_A2      - (Al,Nd)(Va)3
+$   DHCP        - (Al,Nd)(Va)0.5
+$   AL4ND       - (Al)4(Nd)
+$   AL11ND3     - (Al)11(Nd)3
+$   BETA_AL3ND  - (Al)3(Nd)
+$   ALPHA_AL3ND - (Al)3(Nd)
+$   AL2ND       - (Al)2(Nd)
+$   ALND        - (Al)(Nd)
+$   ALND2       - (Al)(Nd)2
+$   ALPHA_ALND3 - (Al)(Nd)3
+$
+$ NOTES
+$   Inverse miscibility gap in liquid above 2200K
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT ND   DHCP                      1.4424E+02  0.0000E+00  0.0000E+00 !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+ -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+
+$ Nd
+$ -------------------------------------
+ FUNCTION GHSERND  298.15
+ -8402.93+111.10239*T-27.0858*T*LN(T)+0.556125E-3*T**2-2.6923E-6*T**3
+ +34887*T**(-1);   900.00 Y
+ -6984.083+83.662617*T-22.7536*T*LN(T)-4.20402E-3*T**2-1.802E-6*T**3;  1128.00 Y
+ -225610.846+1673.040749*T-238.1828733*T*LN(T)+78.615997E-3*T**2
+ -6.048207E-6*T**3+38810350*T**(-1);  1799.00 Y
+ -25742.331+276.257088*T-48.7854*T*LN(T);  1800.00 N !
+ 
+ FUNCTION GBCCND   298.15
+ -6965.635+110.556109*T-27.0858*T*LN(T)+0.556125E-3*T**2-2.6923E-6*T**3
+ +34887*T**(-1);   400.00 Y
+ 7312.2-153.033976*T+14.9956777*T*LN(T)-50.479E-3*T**2+7.287217E-6*T**3
+ -831810*T**(-1);  1128.00 Y
+ -18030.266+239.677322*T-44.5596*T*LN(T);  1289.00 Y
+ 334513.017-2363.919899*T+311.409193*T*LN(T)-156.030778E-3*T**2
+ +12.408421E-6*T**3-64319604*T**(-1);  1799 Y
+ -24495.579+274.879155*T-48.7854*T*LN(T); 1800 N !
+ 
+ FUNCTION GLIQND   298.15
+ -3351.187+109.517314*T-27.0858*T*LN(T)+0.556125E-3*T**2-2.6923E-6*T**3
+ +34887*T**(-1);   300.00 Y
+ 5350.01-86.593963*T+5.357301*T*LN(T)-46.955463E-3*T**2+6.860782E-6*T**3
+ -374380*T**(-1);  1128.00 Y
+ -16335.232+268.625903*T-48.7854*T*LN(T);  1800.00 N !
+
+ FUNCTION GFCCND 298.15 500+GHSERND; 1800 N !
+
+ FUNCTION GHCPND 298.15 1500-0.415725*T+GHSERND; 1800 N !
+
+
+TYPE_DEFINITION % SEQ * !
+DEFINE_SYSTEM_DEFAULT ELEMENT 2 !
+DEFAULT_COMMAND DEFINE_SYSTEM_ELEMENT /- VA !
+
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL,ND : !
+
+PHASE FCC_A1 % 2 1 1 !
+CONSTITUENT FCC_A1 : AL,ND : VA : !
+
+PHASE BCC_A2 % 2 1 3 !
+CONSTITUENT BCC_A2 : AL,ND : VA : !
+
+PHASE DHCP % 2 1 3 !
+CONSTITUENT DHCP : AL,ND : VA : !
+
+PHASE AL4ND % 2 0.8 0.2 !
+CONSTITUENT AL4ND : AL : ND : !
+
+PHASE AL11ND3 % 2 0.7857 0.2143 !
+CONSTITUENT AL11ND3 : AL : ND : !
+
+PHASE BETA_AL3ND % 2 0.75 0.25 !
+CONSTITUENT BETA_AL3ND : AL : ND : !
+
+PHASE ALPHA_AL3ND % 2 0.75 0.25 !
+CONSTITUENT ALPHA_AL3ND : AL : ND : !
+
+PHASE AL2ND % 2 0.6667 0.3333 !
+CONSTITUENT AL2ND : AL : ND : !
+
+PHASE ALND % 2 0.5 0.5 !
+CONSTITUENT ALND : AL : ND : !
+
+PHASE ALND2 % 2 0.3333 0.6667 !
+CONSTITUENT ALND2 : AL : ND : !
+
+PHASE ALND3 % 2 0.25 0.75 !
+CONSTITUENT ALND3 : AL : ND : !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    AL                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N !
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N !
+PARAM G(BCC_A2,AL:VA;0) 298.15 GBCCAL; 6000 N !
+PARAM G(DHCP,AL:VA;0) 298.15 GHCPAL; 6000  N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    ND                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,ND;0) 298.15 GLIQND; 6000 N !
+PARAM G(FCC_A1,ND:VA;0) 298.15 GFCCND; 6000 N !
+PARAM G(BCC_A2,ND:VA;0) 298.15 GBCCND; 6000 N !
+PARAM G(DHCP,ND:VA;0) 298.15 GHSERND; 6000 N !
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                  AL-ND                                   $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$$ LIQUID $$
+PARAM G(LIQUID,AL,ND;0) 298.15 -159238 + 57.514*T; 6000 N !
+PARAM G(LIQUID,AL,ND;1) 298.15 -1350 - 25.797*T; 6000 N !
+PARAM G(LIQUID,AL,ND;2) 298.15 24299 - 25.299*T; 6000 N !
+
+$$ DHCP $$
+PARAM G(DHCP,AL,ND:VA;0) 298.15 -132036 + 28.661*T; 6000 N !
+PARAM G(DHCP,AL,ND:VA;1) 298.15 -61094; 6000 N !
+
+$$ BCC_A2 $$
+PARAM G(BCC_A2,AL,ND:VA;0) 298.15 -150516 + 47.415*T; 6000 N !
+PARAM G(BCC_A2,AL,ND:VA;1) 298.15 -36878; 6000 N !
+
+$$ AL4ND $$
+PARAM G(AL4ND,AL:ND;0) 298.15 0.8*GHSERAL + 0.2*GHSERND +
+    -30097 + 1.365*T; 6000 N !
+
+$$ AL11ND3 $$
+PARAM G(AL11ND3,AL:ND;0) 298.15 0.7857*GHSERAL + 0.2143*GHSERND +
+    -39355 + 7.72*T; 6000 N !
+
+$$ BETA_AL3ND $$
+PARAM G(BETA_AL3ND,AL:ND;0) 298.15 0.75*GHSERAL + 0.25*GHSERND + 
+    -43229 + 8.022*T; 6000 N !
+
+$$ ALPHA_AL3ND $$
+PARAM G(ALPHA_AL3ND,AL:ND;0) 298.15 0.75*GHSERAL + 0.25*GHSERND + 
+    -45046 + 9.587*T; 6000 N !
+
+$$ AL2ND $$
+PARAM G(AL2ND,AL:ND;0) 298.15 0.6667*GHSERAL + 0.3333*GHSERND + 
+    -54037 + 11.622*T; 6000 N !
+
+$$ ALND $$
+PARAM G(ALND,AL:ND;0) 298.15 0.5*GHSERAL + 0.5*GHSERND + 
+    -51110 + 15.354*T; 6000 N !
+
+$$ ALND2 $$
+PARAM G(ALND2,AL:ND;0) 298.15 0.3333*GHSERAL + 0.6667*GHSERND + 
+    -35858 + 10.073*T; 6000 N !
+
+$$ BETA_ALND3 $$
+PARAM G(BETA_ALND3,AL:ND;0) 298.15 0.25*GHSERAL + 0.75*GHSERND + 
+    -27788 + 7.208*T; 6000 N !
+

@@ -1,0 +1,163 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ AL-MG
+$ Y. Zhong, M. Yang, Z.K. Liu, Calphad 29 (2005) 303-311
+$ doi:10.1016/j.calphad.2005.08.004
+$
+$ Phases
+$   Liquid  - (Al,Mg)
+$   FCC_A1  - (Al,Mg)(Va)
+$   HCP_A3  - (Al,Mg)(Va)0.5
+$   BETA    - (Al)140(Mg)89
+$   EPSILON - (Al)30(Mg)23
+$   GAMMA   - (Mg)5(Al,Mg)12(Al,Mg)12
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT MG   HCP_A3                    2.4305E+01  4.9980E+03  3.2671E+01 !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+ -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+
+$ Mg
+$ -------------------------------------
+FUNCTION GHSERMG  298.15
+ -8367.34+143.675547*T-26.1849782*T*LN(T)+0.4858E-3*T**2-1.393669E-6*T**3
+ +78950*T**(-1);   923.00 Y
+ -14130.185+204.716215*T-34.3088*T*LN(T)+1038.192E25*T**(-9);  3000.00 N !
+ 
+FUNCTION GLIQMG 298.15 8202.243-8.83693*T-80.176E-21*T**7+GHSERMG; 923 Y
+ -5439.869+195.324057*T-34.3088*T*LN(T);  3000.00 N !
+ 
+FUNCTION GFCCMG 298.15 2600-0.9*T+GHSERMG; 3000 N !
+ 
+FUNCTION GBCCMG 298.15 3100-2.1*T+GHSERMG; 3000 N !
+
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT ELEMENT 2 !
+DEFAULT_COMMAND DEFINE_SYSTEM_ELEMENT /- VA !
+
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL,MG : !
+
+PHASE FCC_A1 % 2 1 1 !
+CONSTITUENT FCC_A1 : AL,MG : VA : !
+
+PHASE HCP_A3 % 2 1 0.5 !
+CONSTITUENT HCP_A3 : AL,MG : VA : !
+
+PHASE BETA % 2 140 89 !
+CONSTITUENT BETA : AL : MG : !
+
+PHASE EPSILON % 2 30 23 !
+CONSTITUENT EPSILON : AL : MG : !
+
+PHASE GAMMA % 3 5 12 12 !
+CONSTITUENT GAMMA : MG : AL,MG : AL,MG : !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    AL                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N !
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N !
+PARAM G(HCP_A3,AL:VA;0) 298.15 GHCPAL; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                    MG                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PARAM G(LIQUID,MG;0) 298.15 GLIQMG; 6000 N !
+PARAM G(FCC_A1,MG:VA;0) 298.15 GFCCMG; 6000 N !
+PARAM G(HCP_A3,MG:VA;0) 298.15 GHSERMG; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$                                  AL-MG                                   $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Note: the table of parameters from this paper gives both the assessed
+$ parameters for LIQUID, FCC_A1 and HCP_A3 from both their work and from 
+$ P. Liang et al, Z. Metallkd. 89 (1998) 536-540
+$ I used the parameters from the present work since it claims to have
+$ corrected for some incorrect energetics of EPSILON
+
+$$ LIQUID $$
+PARAM G(LIQUID,AL,MG;0) 298.15 -9019 + 4.794*T; 6000 N !
+PARAM G(LIQUID,AL,MG;1) 298.15 -1093 + 1.412*T; 6000 N !
+PARAM G(LIQUID,AL,MG;2) 298.15 494; 6000 N !
+
+$$ FCC_A1 $$
+PARAM G(FCC_A1,AL,MG:VA;0) 298.15 1593 + 2.149*T; 6000 N !
+PARAM G(FCC_A1,AL,MG:VA;1) 298.15 1014 - 0.660*T; 6000 N !
+PARAM G(FCC_A1,AL,MG:VA;2) 298.15 -673; 6000 N !
+
+$$ HCP_A3 $$
+PARAM G(HCP_A3,AL,MG:VA;0) 298.15 4336 - 2.863*T; 6000 N !
+PARAM G(HCP_A3,AL,MG:VA;1) 298.15 -449 - 0.135*T; 6000 N !
+PARAM G(HCP_A3,AL,MG:VA;2) 298.15 -1963; 6000 N !
+
+$$ BETA $$
+PARAM G(BETA,AL:MG;0) 298.15 140*GHSERAL + 89*GHSERMG +
+        -803385 + 105.238*T; 6000 N !
+
+$$ EPSILON $$
+PARAM G(EPSILON,AL:MG;0) 298.15 30*GHSERAL + 23*GHSERMG +
+        -170832 - 8.047*T; 6000 N !
+
+$$ GAMMA $$
+PARAM G(GAMMA,MG:AL:AL;0) 298.15 24*GHSERAL + 5*GHSERMG + 
+        8360 + 20.339*T; 6000 N !
+PARAM G(GAMMA,MG:MG:AL;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+        -103596 + 22.121*T; 6000 N !
+PARAM G(GAMMA,MG:AL:MG;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+        180556 - 138.069*T; 6000 N !
+PARAM G(GAMMA,MG:MG:MG;0) 298.15 29*GHSERMG + 
+        139371 - 87.319*T; 6000 N !
+PARAM G(GAMMA,MG:AL:AL,MG;0) 298.15 113100 - 14.500*T; 6000 N !
+PARAM G(GAMMA,MG:MG:AL,MG;0) 298.15 113100 - 14.500*T; 6000 N !
+
+
+
+
+$$$ PARAMETERS from P. Liang et al, Z. Metallkd. 89 (1998) 536-540 $$$
+
+$ PARAM G(LIQUID,AL,MG;0) 298.15 -12000 + 8.566*T; 6000 N !
+$ PARAM G(LIQUID,AL,MG;1) 298.15 1894 - 3*T; 6000 N !
+$ PARAM G(LIQUID,AL,MG;2) 298.15 2000; 6000 N !
+
+$ PARAM G(FCC_A1,AL,MG:VA;0) 298.15 4971 - 3.5*T; 6000 N !
+$ PARAM G(FCC_A1,AL,MG:VA;1) 298.15 900 + 0.423*T; 6000 N !
+$ PARAM G(FCC_A1,AL,MG:VA;2) 298.15 950; 6000 N !
+
+$ PARAM G(HCP_A3,AL,MG:VA;0) 298.15 1950 - 2*T; 6000 N !
+$ PARAM G(HCP_A3,AL,MG:VA;1) 298.15 1480 - 2.08*T; 6000 N !
+$ PARAM G(HCP_A3,AL,MG:VA;2) 298.15 3500; 6000 N !
+
+$ PARAM G(BETA,AL:MG;0) 298.15 140*GHSERAL + 89*GHSERMG +
+$         -246175 - 675.550*T; 6000 N !
+
+$ PARAM G(EPSILON,AL:MG;0) 298.15 30*GHSERAL + 23*GHSERMG +
+$         -52565.4 - 173.1775*T; 6000 N !
+
+$ PARAM G(GAMMA,MG:AL:AL;0) 298.15 24*GHSERAL + 5*GHSERMG + 
+$         97875 - 101.5*T; 6000 N !
+$ PARAM G(GAMMA,MG:MG:AL;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+$         -52780 - 50.75*T; 6000 N !
+$ PARAM G(GAMMA,MG:AL:MG;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+$         284124.6 - 138.069*T; 6000 N !
+$ PARAM G(GAMMA,MG:MG:MG;0) 298.15 29*GHSERMG + 
+$         133469.6 - 87.319*T; 6000 N !
+$ PARAM G(GAMMA,MG:AL:AL,MG;0) 298.15 113100 - 14.5*T; 6000 N !
+$ PARAM G(GAMMA,MG:MG:AL,MG;0) 298.15 113100 - 14.5*T; 6000 N !
