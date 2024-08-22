@@ -1,16 +1,16 @@
 """
 Script to plot a binary and save to pictures folder
 """
-DATABASE = "Al-Cu-Mg_Buhler_1997.tdb"
-COMPONENTS = ["CU", "MG", "VA"]
+DATABASE = "Al-Cu-Mg-Si.tdb"
+COMPONENTS = ["MG", "SI", "VA"]
 PHASES = None
 
-TEMPERATURE_LIMITS = [300, 2500]
+TEMPERATURE_LIMITS = [300, 4000]
 TEMPERATURE_STEP = 10
 PRESSURE = 101325
-X = "MG"
+X = "SI"
 
-SAVE_FIGURE = True
+SAVE_FIGURE = False
 
 
 import os

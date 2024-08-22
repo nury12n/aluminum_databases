@@ -1,23 +1,26 @@
 """
 Script to plot a binary and save to pictures folder
 """
-DATABASE = "Al-Cu-Mg_Buhler_1997.tdb"
-COMPONENTS = ["AL", "CU", "MG", "VA"]
+DATABASE = "Al-Cu-Mg-Si.tdb"
+#DATABASE = "AlCuSi-15Hal-final.tdb"
+COMPONENTS = ["AL", "MG", "SI", "VA"]
 PHASES = None
 
-TEMPERATURE = 673
+TEMPERATURE = 770+273
 PRESSURE = 101325
-X = "CU"
-Y = "AL"
+X = "MG"
+Y = "SI"
 
-SAVE_FIGURE = True
+SAVE_FIGURE = False
 
 
 import os
 import matplotlib.pyplot as plt
-from pycalphad import variables as v
+from pycalphad import Database, variables as v
 from pycalphad.plot import triangular
 from pycalphad.mapping import TernaryStrategy, plot_ternary
+
+db = Database('databases/' + DATABASE)
 
 conds = {v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): (0, 1, 0.01), v.X(Y): (0, 1, 0.01)}
 

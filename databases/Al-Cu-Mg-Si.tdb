@@ -1,0 +1,924 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Al-Cu-Mg-Si
+$
+$ This will be use as a starter for other databases
+$ Parameters will be sorted by phases then by elements
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01 !
+ELEMENT MG   HCP_A3                    2.4305E+01  4.9980E+03  3.2671E+01 !
+ELEMENT SI   DIAMOND_A4                2.8085E+01  3.2175E+03  1.8820E+01 !
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+DEFAULT_COMMAND DEF_SYS_ELEMENT VA !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+  -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+$ -------------------------------------
+
+$ Cu
+$ -------------------------------------
+FUNCTION GHSERCU  298.15
+ -7770.458+130.485235*T-24.112392*T*LN(T)-2.65684E-3*T**2+0.129223E-6*T**3
+ +52478*T**(-1);  1357.77 Y
+ -13542.026+183.803828*T-31.38*T*LN(T)+364.167E27*T**(-9);  3200.00 N !
+ 
+FUNCTION GBCCCU 298.15 4017-1.255*T+GHSERCU; 3200 N !
+ 
+FUNCTION GHCPCU 298.15 600+0.2*T+GHSERCU; 3200 N !
+ 
+FUNCTION GLIQCU 298.15 12964.735-9.511904*T-584.89E-23*T**7+GHSERCU; 1357.77 Y
+ -46.545+173.881484*T-31.38*T*LN(T); 3200 N !
+$ -------------------------------------
+
+$ Mg
+$ -------------------------------------
+FUNCTION GHSERMG  298.15
+ -8367.34+143.675547*T-26.1849782*T*LN(T)+0.4858E-3*T**2-1.393669E-6*T**3
+ +78950*T**(-1);   923.00 Y
+ -14130.185+204.716215*T-34.3088*T*LN(T)+1038.192E25*T**(-9);  3000.00 N !
+ 
+FUNCTION GLIQMG 298.15 8202.243-8.83693*T-80.176E-21*T**7+GHSERMG; 923 Y
+ -5439.869+195.324057*T-34.3088*T*LN(T);  3000.00 N !
+ 
+FUNCTION GFCCMG 298.15 2600-0.9*T+GHSERMG; 3000 N !
+ 
+FUNCTION GBCCMG 298.15 3100-2.1*T+GHSERMG; 3000 N !
+$ -------------------------------------
+
+$ Si
+$ -------------------------------------
+FUNCTION GHSERSI  298.15
+ -8162.609+137.236859*T-22.8317533*T*LN(T)-1.912904E-3*T**2-0.003552E-6*T**3
+ +176667*T**(-1);  1687.00 Y
+ -9457.642+167.281367*T-27.196*T*LN(T)-420.369E28*T**(-9);  3600.00 N !
+ 
+FUNCTION GLIQSI 298.15 50696.36-30.099439*T+209.307E-23*T**7+GHSERSI; 1687 Y
+ 40370.523+137.722298*T-27.196*T*LN(T);  3600.00 N !
+ 
+FUNCTION GBCCSI 298.15 47000-22.5*T+GHSERSI; 3600 N !
+ 
+FUNCTION GFCCSI 298.15 51000-21.8*T+GHSERSI; 3600 N !
+ 
+FUNCTION GHCPSI 298.15 49200-20.8*T+GHSERSI; 3600 N !
+$ -------------------------------------
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase: LIQUID 
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL,CU,MG,SI : !
+
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N UNA09 !
+PARAM G(LIQUID,CU;0) 298.15 GLIQCU; 6000 N UNA09 !
+PARAM G(LIQUID,MG;0) 298.15 GLIQMG; 6000 N UNA09 !
+PARAM G(LIQUID,SI;0) 298.15 GLIQSI; 6000 N UNA09 !
+
+$ Al-Cu
+PARAM G(LIQUID,AL,CU;0) 298.15 -67094 + 8.555*T; 6000 N LIA15 !
+PARAM G(LIQUID,AL,CU;1) 298.15 32148 - 7.118*T; 6000 N LIA15 !
+PARAM G(LIQUID,AL,CU;2) 298.15 5915 - 5.889*T; 6000 N LIA15 !
+PARAM G(LIQUID,AL,CU;3) 298.15 -7290 + 5.5*T; 6000 N LIA15 !
+
+$ Al-Mg
+PARAM G(LIQUID,AL,MG;0) 298.15 -9019 + 4.794*T; 6000 N ZHO05 !
+PARAM G(LIQUID,AL,MG;1) 298.15 -1093 + 1.412*T; 6000 N ZHO05 !
+PARAM G(LIQUID,AL,MG;2) 298.15 494; 6000 N ZHO05 !
+
+$ Al-Si
+PARAM G(LIQUID,AL,SI;0) 298.15 -11655.93 - 0.92934*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,SI;1) 298.15 -2873.45 + 0.2945*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,SI;2) 298.15 2520; 6000 N LIU99 !
+
+$ Cu-Mg
+PARAM G(LIQUID,CU,MG;0) 298.15 -36962.71 + 4.74394*T; 6000 N COST !
+PARAM G(LIQUID,CU,MG;1) 298.15 -8182.19; 6000 N COST !
+
+$ Cu-Si
+PARAM G(LIQUID,CU,SI;0) 298.15 -37776 + 3.47*T; 6000 N HAL15 !
+PARAM G(LIQUID,CU,SI;1) 298.15 -44866 + 14.53*T; 6000 N HAL15 !
+PARAM G(LIQUID,CU,SI;2) 298.15 -40866 + 8.62*T; 6000 N HAL15 !
+PARAM G(LIQUID,CU,SI;3) 298.15 -10060; 6000 N HAL15 !
+PARAM G(LIQUID,CU,SI;4) 298.15 17550; 6000 N HAL15 !
+
+$ Mg-Si
+PARAM G(LIQUID,MG,SI;0) 298.15 -70055 + 24.98*T; 6000 N KEV04 !
+PARAM G(LIQUID,MG,SI;1) 298.15 -1300; 6000 N KEV04 !
+PARAM G(LIQUID,MG,SI;2) 298.15 6272; 6000 N KEV04 !
+
+$ Al-Cu-Si
+PARAM G(LIQUID,AL,CU,SI;0) 298.15 40000; 6000 N HAL15 !
+PARAM G(LIQUID,AL,CU,SI;1) 298.15 50000; 6000 N HAL15 !
+PARAM G(LIQUID,AL,CU,SI;2) 298.15 -10000; 6000 N HAL15 !
+
+$ Al-Mg-Si
+PARAM G(LIQUID,AL,MG,SI;0) 298.15 147000 - 113*T; 6000 N MOOR20 !
+PARAM G(LIQUID,AL,MG,SI;1) 298.15 -14000; 6000 N MOOR20 !
+PARAM G(LIQUID,AL,MG,SI;2) 298.15 -95000; 6000 N MOOR20 !
+
+$ Cu-Mg-Si
+PARAM G(LIQUID,CU,MG,SI;0) 298.15 1E-4; 6000 N COST !
+PARAM G(LIQUID,CU,MG,SI;1) 298.15 -141736; 6000 N COST !
+PARAM G(LIQUID,CU,MG,SI;2) 298.15 1E-4; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FCC_A1
+$ Space group:     Fm-3m
+$ Strukturbericht: A1
+$ Pearson symbol:  cF4
+$ Prototype:       Cu
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FCC_A1 % 2 1 1 !
+CONSTITUENT FCC_A1 : AL,CU,MG,SI : VA : !
+
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N UNA09 !
+PARAM G(FCC_A1,CU:VA;0) 298.15 GHSERCU; 6000 N UNA09 !
+PARAM G(FCC_A1,MG:VA;0) 298.15 GFCCMG; 6000 N UNA09 !
+PARAM G(FCC_A1,SI:VA;0) 298.15 GFCCSI; 6000 N UNA09 !
+
+$ Al-Cu
+PARAM G(FCC_A1,AL,CU:VA;0) 298.15 -53520 + 2*T; 6000 N LIA15 !
+$ Sign of 39005 was flipped here to better produce the phase diagram
+PARAM G(FCC_A1,AL,CU:VA;1) 298.15 39005 - 2.368*T; 6000 N LIA15 !
+PARAM G(FCC_A1,AL,CU:VA;2) 298.15 1210; 6000 N LIA15 !
+
+$ Al-Mg
+PARAM G(FCC_A1,AL,MG:VA;0) 298.15 1593 + 2.149*T; 6000 N ZHO05 !
+PARAM G(FCC_A1,AL,MG:VA;1) 298.15 1014 - 0.660*T; 6000 N ZHO05 !
+PARAM G(FCC_A1,AL,MG:VA;2) 298.15 -673; 6000 N ZHO05 !
+
+$ Al-Si
+PARAM G(FCC_A1,AL,SI:VA;0) 298.15 -3423.91 - 0.09584*T; 6000 N LIU99 !
+
+$ Cu-Mg
+PARAM G(FCC_A1,CU,MG:VA;0) 298.15 -22059.61 + 5.63232*T; 6000 N COST !
+
+$ Cu-Si
+PARAM G(FCC_A1,CU,SI:VA;0) 298.15 -32244 + 20*T; 6000 N HAL15 !
+PARAM G(FCC_A1,CU,SI:VA;1) 298.15 -43581 - 28.5*T; 6000 N HAL15 !
+
+$ Al-Cu-Mg
+PARAM G(FCC_A1,AL,CU,MG:VA;0) 298.15 59235; 6000 N BUH98 !
+PARAM G(FCC_A1,AL,CU,MG:VA;1) 298.15 0; 6000 N BUH98 !
+PARAM G(FCC_A1,AL,CU,MG:VA;2) 298.15 0; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           HCP_A3
+$ Space group:     
+$ Strukturbericht: A3
+$ Pearson symbol:  
+$ Prototype:       Mg
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE HCP_A3 % 2 1 0.5 !
+CONSTITUENT HCP_A3 : AL,CU,MG,SI : VA : !
+
+PARAM G(HCP_A3,AL:VA;0) 298.15 GHCPAL; 6000 N UNA09 !
+PARAM G(HCP_A3,CU:VA;0) 298.15 GHCPCU; 6000 N UNA09 !
+PARAM G(HCP_A3,MG:VA;0) 298.15 GHSERMG; 6000 N UNA09 !
+PARAM G(HCP_A3,SI:VA;0) 298.15 GHCPSI; 6000 N UNA09 !
+
+$ Al-Cu
+PARAM G(HCP_A3,AL,CU:VA;0) 298.15 -63990 + 2*T; 6000 N HAL15 !
+PARAM G(HCP_A3,AL,CU:VA;1) 298.15 34590 - 2*T; 6000 N HAL15 !
+PARAM G(HCP_A3,AL,CU:VA;2) 298.15 1170; 6000 N HAL15 !
+
+$ Al-Mg
+PARAM G(HCP_A3,AL,MG:VA;0) 298.15 4336 - 2.863*T; 6000 N ZHO05 !
+PARAM G(HCP_A3,AL,MG:VA;1) 298.15 -449 - 0.135*T; 6000 N ZHO05 !
+PARAM G(HCP_A3,AL,MG:VA;2) 298.15 -1963; 6000 N ZHO05 !
+
+$ Cu-Mg
+PARAM G(HCP_A3,CU,MG:VA;0) 298.15 22500 - 3*T; 6000 N COST !
+
+$ Cu-Si
+PARAM G(HCP_A3,CU,SI:VA;0) 298.15 -26218 + 11*T; 6000 N HAL15 !
+PARAM G(HCP_A3,CU,SI:VA;1) 298.15 -60756 - 15.4*T; 6000 N HAL15 !
+
+$ Mg-Si
+PARAM G(HCP_A3,MG,SI:VA;0) 298.15 -7148.79 + 0.894*T; 6000 N KEV04 !
+
+$ Al-Cu-Si
+PARAM G(HCP_A3,AL,CU,SI:VA;0) 298.15 -3400 + 7*T; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           DIAMOND_A4
+$ Space group:     
+$ Strukturbericht: A4
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DIAMOND_A4 % 1 1 !
+CONSTITUENT DIAMOND_A4 : SI : !
+
+PARAM G(DIAMOND_A4,SI;0) 298.15 GHSERSI; 6000 N UNA09 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALCU_C16
+$ Aliases:         THETA
+$ Space group:     I4/mcm
+$ Strukturbericht: C16
+$ Pearson symbol:  tl12
+$ Prototype:       CuAl2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALCU_C16 % 2 2 1 !
+CONSTITUENT ALCU_C16 : AL : AL,CU : !
+
+PARAM G(ALCU_C16,AL:AL;0) 298.15 3*GBCCAL; 6000 N LIA15 !
+PARAM G(ALCU_C16,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
+    -48361 + 8*T; 6000 N LIA15 !
+PARAM G(ALCU_C16,AL:AL,CU;0) 298.15 2211; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALCU_ETA_1
+$ Space group:     Cmmm
+$ Strukturbericht: 
+$ Pearson symbol:  oS32
+$ Prototype:       CU0.94Al0.94
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALCU_ETA_1 % 2 1 1 !
+CONSTITUENT ALCU_ETA_1 : AL,CU : CU : !
+
+PARAM G(ALCU_ETA_1,AL:CU;0) 298.15 GHSERAL + GHSERCU +
+    -39431 + 1.9*T; 6000 N LIA15 !
+PARAM G(ALCU_ETA_1,CU:CU;0) 298.15 2*GHSERCU + 
+    4770 + 9*T; 6000 N LIA15 !
+PARAM G(ALCU_ETA_1,AL,CU:CU;0) 298.15 0; 6000 N LIA15 !
+PARAM G(ALCU_ETA_1,AL,CU:CU;1) 298.15 -43168 - 18.5*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALCU_ETA_2
+$ Space group:     C2/m
+$ Strukturbericht: 
+$ Pearson symbol:  mC20
+$ Prototype:       CuAl(r)
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALCU_ETA_2 % 2 0.48 0.52 !
+CONSTITUENT ALCU_ETA_2 : AL : CU : !
+
+PARAM G(ALCU_ETA_2,AL:CU;0) 298.15 0.48*GHSERAL + 0.52*GHSERCU +
+    -20987 + 1.62*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL9CU11
+$ Aliases:         XI
+$ Space group:     Fmm2 or Imm2
+$ Strukturbericht: 
+$ Pearson symbol:  oF88 or ol24
+$ Prototype:       Al47.8Al35.5 or Al11.5Al9.0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL9CU11 % 2 9 11 !
+CONSTITUENT AL9CU11 : AL,CU : CU : !
+
+PARAM G(AL9CU11,AL:AL;0) 298.15 20*GBCCAL; 6000 N LIA15 !
+PARAM G(AL9CU11,AL:CU;0) 298.15 9*GHSERAL + 11*GHSERCU +
+    -424720 + 20*T; 6000 N LIA15 !
+PARAM G(AL9CU11,AL,CU:CU;0) 298.15 0; 6000 N LIA15 !
+PARAM G(AL9CU11,AL,CU:CU;1) 298.15 -413300 + 100*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALCU_B82
+$ Aliases:         EPSILON_2
+$ Space group:     P6_3/mmc
+$ Strukturbericht: 
+$ Pearson symbol:  hP6
+$ Prototype:       Ni2In
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALCU_B82 % 2 1 1 !
+CONSTITUENT ALCU_B82 : AL,CU : CU : !
+
+PARAM G(ALCU_B82,AL:CU;0) 298.15 GHSERAL + GHSERCU +
+    -40326 + 4.1*T; 6000 N LIA15 !
+PARAM G(ALCU_B82,CU:CU;0) 298.15 2*GHSERCU + 
+    14850 + 30.1*T; 6000 N LIA15 !
+PARAM G(ALCU_B82,AL,CU:CU;0) 298.15 -56870 - 55*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL5CU8
+$ Aliases:         DELTA
+$ Space group:     R-3m
+$ Strukturbericht: 
+$ Pearson symbol:  hR*
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL5CU8 % 2 5 8 !
+CONSTITUENT AL5CU8 : AL : CU : !
+
+PARAM G(AL5CU8,AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU +
+    -278450 + 5.2*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL4CU9_D82
+$ Aliases:         GAMMA_2
+$ Space group:     I-43m
+$ Strukturbericht: D82
+$ Pearson symbol:  cI52
+$ Prototype:       Cu5Zn8
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL4CU9_D82 % 3 4 6 16 !
+CONSTITUENT AL4CU9_D82 : CU : CU : AL,CU,SI : !
+
+PARAM G(AL4CU9_D82,CU:CU:CU;0) 298.15 26*GHSERCU + 2600; 6000 N LIA15 !
+
+$ Al-Cu
+PARAM G(AL4CU9_D82,CU:CU:AL;0) 298.15 16*GHSERAL + 10*GHSERCU +
+    -94322.4 + 389.508*T; 6000 N LIA15 !
+PARAM G(AL4CU9_D82,CU:CU:AL,CU;0) 298.15 -1451526.6 - 859.628*T; 6000 N LIA15 !
+PARAM G(AL4CU9_D82,CU:CU:AL,CU;1) 298.15 -1516652.4 - 92*T; 6000 N LIA15 !
+
+$ Cu-Si
+PARAM G(AL4CU9_D82,CU:CU:SI;0) 298.15 10*GHSERCU + 16*GHSERSI +
+    750000 - 360*T; 6000 N HAL15 !
+PARAM G(AL4CU9_D82,CU:CU:CU,SI;0) 298.15 -950000; 6000 N HAL15 !
+PARAM G(AL4CU9_D82,CU:CU:CU,SI;1) 298.15 -900000; 6000 N HAL15 !
+PARAM G(AL4CU9_D82,CU:CU:CU,SI;2) 298.15 1000000; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(AL4CU9_D82,CU:CU:AL,CU,SI;0) 298.15 0; 6000 N HAL15 !
+PARAM G(AL4CU9_D82,CU:CU:AL,CU,SI;1) 298.15 -4400000; 6000 N HAL15 !
+PARAM G(AL4CU9_D82,CU:CU:AL,CU,SI;2) 298.15 0; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL4CU9_D83
+$ Aliases:         GAMMA_1
+$ Space group:     P-43m
+$ Strukturbericht: 
+$ Pearson symbol:  cP52
+$ Prototype:       Cu9Al4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL4CU9_D83 % 3 4 6 16 !
+CONSTITUENT AL4CU9_D83 : CU : CU : AL,CU,SI : !
+
+PARAM G(AL4CU9_D83,CU:CU:CU;0) 298.15 26*GHSERCU + 2600; 6000 N LIA15 !
+
+$ Al-Cu
+PARAM G(AL4CU9_D83,CU:CU:AL;0) 298.15 16*GHSERAL + 10*GHSERCU +
+    -94322.4 + 389.508*T; 6000 N LIA15 !
+PARAM G(AL4CU9_D83,CU:CU:AL,CU;0) 298.15 -1613680 - 708*T; 6000 N LIA15 !
+PARAM G(AL4CU9_D83,CU:CU:AL,CU;1) 298.15 -1585780 - 100*T; 6000 N LIA15 !
+
+$ Cu-Si
+PARAM G(AL4CU9_D83,CU:CU:SI;0) 298.15 10*GHSERCU + 16*GHSERSI +
+    750000 - 360*T; 6000 N HAL15 !
+PARAM G(AL4CU9_D83,CU:CU:CU,SI;0) 298.15 -950000; 6000 N HAL15 !
+PARAM G(AL4CU9_D83,CU:CU:CU,SI;1) 298.15 -900000; 6000 N HAL15 !
+PARAM G(AL4CU9_D83,CU:CU:CU,SI;2) 298.15 1000000; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(AL4CU9_D83,CU:CU:AL,CU,SI;0) 298.15 0; 6000 N HAL15 !
+PARAM G(AL4CU9_D83,CU:CU:AL,CU,SI;1) 298.15 -4700000; 6000 N HAL15 !
+PARAM G(AL4CU9_D83,CU:CU:AL,CU,SI;2) 298.15 0; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_A2
+$ Aliases:         EPSILON_1
+$ Space group:     Im-3m
+$ Strukturbericht: A2
+$ Pearson symbol:  cI2
+$ Prototype:       W
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE BCC_A2 % 2 1 3 !
+CONSTITUENT BCC_A2 : AL,CU,MG,SI : VA : !
+
+PARAM G(BCC_A2,AL:VA;0) 298.15 GBCCAL; 6000 N UNA09 !
+PARAM G(BCC_A2,CU:VA;0) 298.15 GBCCCU; 6000 N UNA09 !
+PARAM G(BCC_A2,MG:VA;0) 298.15 GBCCMG; 6000 N UNA09 !
+PARAM G(BCC_A2,SI:VA;0) 298.15 GBCCSI; 6000 N UNA09 !
+
+$ Al-Cu
+PARAM G(BCC_A2,AL,CU:VA;0) 298.15 -73537 + 3.98*T; 6000 N LIA15 !
+PARAM G(BCC_A2,AL,CU:VA;1) 298.15 51693 - 12*T; 6000 N LIA15 !
+
+$ Al-Si
+PARAM G(BCC_A2,AL,SI:VA;0) 298.15 -3143.78 + 0.39297*T; 6000 N HAL15 !
+
+$ Cu-Si
+PARAM G(BCC_A2,CU,SI:VA;0) 298.15 -19744 + 11*T; 6000 N HAL15 !
+PARAM G(BCC_A2,CU,SI:VA;1) 298.15 -88450 - 9*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(BCC_A2,AL,CU,SI:VA;0) 298.15 60000; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALCU4_D022
+$ Aliases:         ALPHA_2
+$ Space group:     
+$ Strukturbericht: D022
+$ Pearson symbol:  
+$ Prototype:       TiAl3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALCU4_D022 % 0.23 0.77 !
+CONSTITUENT ALCU4_D022 : AL : CU : !
+
+PARAM G(ALCU4_D022,AL:CU;0) 298.15 0.23*GHSERAL + 0.77*GHSERCU +
+    -13904.9 - 3*T; 6000 N LIA15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BETA_ALMG
+$ Space group:     Fd-3m
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       Cd2Na
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE BETA_ALMG % 2 140 89 !
+CONSTITUENT BETA_ALMG : AL : MG : !
+
+PARAM G(BETA_ALMG,AL:MG;0) 298.15 140*GHSERAL + 89*GHSERMG +
+        -803385 + 105.238*T; 6000 N ZHO05 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           EPSILON_ALMG
+$ Space group:     R-3
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       Co5Cr2Mo3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE EPSILON_ALMG % 2 30 23 !
+CONSTITUENT EPSILON_ALMG : AL : MG : !
+
+PARAM G(EPSILON_ALMG,AL:MG;0) 298.15 30*GHSERAL + 23*GHSERMG +
+        -170832 - 8.047*T; 6000 N ZHO05 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA_ALMG
+$ Space group:     A12
+$ Strukturbericht: 
+$ Pearson symbol:  I-43m
+$ Prototype:       alpha-Mn
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA_ALMG % 3 5 12 12 !
+CONSTITUENT GAMMA_ALMG : MG : AL,MG : AL,MG : !
+
+PARAM G(GAMMA_ALMG,MG:AL:AL;0) 298.15 24*GHSERAL + 5*GHSERMG + 
+        8360 + 20.339*T; 6000 N ZHO05 !
+PARAM G(GAMMA_ALMG,MG:MG:AL;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+        -103596 + 22.121*T; 6000 N ZHO05 !
+PARAM G(GAMMA_ALMG,MG:AL:MG;0) 298.15 12*GHSERAL + 17*GHSERMG + 
+        180556 - 138.069*T; 6000 N ZHO05 !
+PARAM G(GAMMA_ALMG,MG:MG:MG;0) 298.15 29*GHSERMG + 
+        139371 - 87.319*T; 6000 N ZHO05 !
+PARAM G(GAMMA_ALMG,MG:AL:AL,MG;0) 298.15 113100 - 14.500*T; 6000 N ZHO05 !
+PARAM G(GAMMA_ALMG,MG:MG:AL,MG;0) 298.15 113100 - 14.500*T; 6000 N ZHO05 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LAVES_C15
+$ Space group:     Fd-3m
+$ Strukturbericht: C15
+$ Pearson symbol:  
+$ Prototype:       Cu2Mg
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LAVES_C15 % 2 2 1 !
+CONSTITUENT LAVES_C15 : AL,CU,MG,SI : AL,CU,MG,SI : !
+
+PARAM G(LAVES_C15,AL:AL;0) 298.15 3*GHSERAL + 15000; 6000 N BUH98 !
+PARAM G(LAVES_C15,CU:CU;0) 298.15 3*GHSERCU + 15000; 6000 N COST !
+PARAM G(LAVES_C15,MG:MG;0) 298.15 3*GHSERMG + 15000; 6000 N COST !
+PARAM G(LAVES_C15,SI:SI;0) 298.15 3*GHSERSI + 15000; 6000 N COST !
+
+$ Al-Cu
+PARAM G(LAVES_C15,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C15,CU:AL;0) 298.15 2*GHSERCU + GHSERAL +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,CU:AL;0) 298.15 -105000 - 1.615*T; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,CU:CU;0) 298.15 -105000 - 1.615*T; 6000 N BUH98 !
+
+$ Al-Mg
+PARAM G(LAVES_C15,AL:MG;0) 298.15 2*GHSERAL + GHSERMG +
+    30000 + 4*T; 6000 N BUH98 !
+PARAM G(LAVES_C15,MG:AL;0) 298.15 2*GHSERMG + GHSERAL +
+    104970.96 - 16.46448*T; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C15,MG:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,MG:AL;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,MG:MG;0) 298.15 15000; 6000 N BUH98 !
+
+$ Cu-Mg
+PARAM G(LAVES_C15,CU:MG;0) 298.15 -54691 + 364.73085*T - 69.276417*T*LOG(T) +
+    -5.19246E-4*T**2 + 143502*T**(-1) - 5.65953E-6*T**3; 6000 N COST !
+PARAM G(LAVES_C15,MG:CU;0) 298.15 2*GHSERMG + GHSERCU +
+    104970.96 - 16.46448*T; 6000 N COST !
+PARAM G(LAVES_C15,CU,MG:CU;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C15,CU,MG:MG;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C15,CU:CU,MG;0) 298.15 6599.45; 6000 N COST !
+PARAM G(LAVES_C15,MG:CU,MG;0) 298.15 6599.45; 6000 N COST !
+
+$ Cu-Si
+PARAM G(LAVES_C15,CU:SI;0) 298.15 2*GHSERCU + GHSERSI + 
+    15000; 6000 N COST !
+PARAM G(LAVES_C15,SI:CU;0) 298.15 2*GHSERSI + GHSERCU +
+    15000; 6000 N COST !
+PARAM G(LAVES_C15,CU,SI:CU;0) 298.15 15305 + 20.69*T; 6000 N COST !
+PARAM G(LAVES_C15,CU,SI:SI;0) 298.15 15305 + 20.69*T; 6000 N COST !
+
+$ Mg-Si
+PARAM G(LAVES_C15,MG:SI;0) 298.15 2*GHSERMG + GHSERSI +
+    104970.96 - 16.448*T; 6000 N COST !
+PARAM G(LAVES_C15,SI:MG;0) 298.15 2*GHSERSI + GHSERMG +
+    41039 + 6.25*T; 6000 N COST !
+PARAM G(LAVES_C15,MG,SI:MG;0) 298.15 15000; 6000 N COST !
+PARAM G(LAVES_C15,MG,SI:SI;0) 298.15 15000; 6000 N COST !
+PARAM G(LAVES_C15,MG:MG,SI;0) 298.15 8000; 6000 N COST !
+PARAM G(LAVES_C15,SI:MG,SI;0) 298.15 8000; 6000 N COST !
+
+$ Al-Cu-Mg
+PARAM G(LAVES_C15,AL:CU,MG;0) 298.15 6599.45; 6000 N BUH98 !
+PARAM G(LAVES_C15,CU:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,CU:MG;0) 298.15 -180000 - 1.615*T; 6000 N BUH98 !
+PARAM G(LAVES_C15,AL,MG:CU;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C15,CU,MG:AL;0) 298.15 13011.35; 6000 N BUH98 !
+
+$ Cu-Mg-Si
+PARAM G(LAVES_C15,MG,SI:CU;0) 298.15 15000; 6000 N COST !
+PARAM G(LAVES_C15,SI:CU,MG;0) 298.15 6599.45; 6000 N COST !
+PARAM G(LAVES_C15,CU,SI:MG;0) 298.15 -193131 + 20.69*T; 6000 N COST !
+PARAM G(LAVES_C15,CU:MG,SI;0) 298.15 8000; 6000 N COST !
+PARAM G(LAVES_C15,CU,MG:SI;0) 298.15 13011.35; 6000 N COST !
+
+$ Al-Mg-Si
+PARAM G(LAVES_C15,SI:AL,MG;0) 298.15 2666.667; 6000 N MOOR20 !
+PARAM G(LAVES_C15,AL,MG:SI;0) 298.15 5000; 6000 N MOOR20 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LAVES_C14
+$ Space group:     P6_3/mmc
+$ Strukturbericht: C14
+$ Pearson symbol:  
+$ Prototype:       MgZn2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LAVES_C14 % 2 2 1 !
+CONSTITUENT LAVES_C14 : AL,CU,MG : AL,CU,MG : !
+
+PARAM G(LAVES_C14,AL:AL;0) 298.15 3*GHSERAL + 15000; 6000 N BUH98 !
+PARAM G(LAVES_C14,CU:CU;0) 298.15 3*GHSERCU + 15000; 6000 N COST !
+PARAM G(LAVES_C14,MG:MG;0) 298.15 3*GHSERMG + 15000; 6000 N COST !
+
+$ Al-Cu
+PARAM G(LAVES_C14,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C14,CU:AL;0) 298.15 2*GHSERCU + GHSERAL +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,CU:AL;0) 298.15 -24000 + 2.44*T; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,CU:CU;0) 298.15 -24000 + 2.44*T; 6000 N BUH98 !
+
+$ Al-Mg
+PARAM G(LAVES_C14,AL:MG;0) 298.15 2*GHSERAL + GHSERMG +
+    12671 + 16.8*T; 6000 N BUH98 !
+PARAM G(LAVES_C14,MG:AL;0) 298.15 2*GHSERMG + GHSERAL +
+    74970.96 - 16.46448*T; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C14,MG:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,MG:AL;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,MG:MG;0) 298.15 15000; 6000 N BUH98 !
+
+$ Cu-Mg
+PARAM G(LAVES_C14,CU:MG;0) 298.15 -24691 + 364.73085*T - 69.276417*T*LOG(T) +
+    -5.19246E-4*T**2 + 143502*T**(-1) - 5.65953E-6*T**3; 6000 N COST !
+PARAM G(LAVES_C14,MG:CU;0) 298.15 2*GHSERMG + GHSERCU +
+    74970.96 - 16.46448*T; 6000 N COST !
+PARAM G(LAVES_C14,CU,MG:CU;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C14,CU,MG:MG;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C14,CU:CU,MG;0) 298.15 6599.45; 6000 N COST !
+PARAM G(LAVES_C14,MG:CU,MG;0) 298.15 6599.45; 6000 N COST !
+
+$ Al-Cu-Mg
+PARAM G(LAVES_C14,AL:CU,MG;0) 298.15 6599.45; 6000 N BUH98 !
+PARAM G(LAVES_C14,CU:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,CU:MG;0) 298.15 -224000 + 2.44*T; 6000 N BUH98 !
+PARAM G(LAVES_C14,AL,MG:CU;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C14,CU,MG:AL;0) 298.15 13011.35; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LAVES_C36
+$ Space group:     P6_3/mmc
+$ Strukturbericht: C36
+$ Pearson symbol:  
+$ Prototype:       MgNi2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LAVES_C36 % 2 2 1 !
+CONSTITUENT LAVES_C36 : AL,CU,MG : AL,CU,MG : !
+
+PARAM G(LAVES_C36,AL:AL;0) 298.15 3*GHSERAL + 15000; 6000 N BUH98 !
+PARAM G(LAVES_C36,CU:CU;0) 298.15 3*GHSERCU + 15000; 6000 N COST !
+PARAM G(LAVES_C36,MG:MG;0) 298.15 3*GHSERMG + 15000; 6000 N COST !
+
+$ Al-Cu
+PARAM G(LAVES_C36,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C36,CU:AL;0) 298.15 2*GHSERCU + GHSERAL +
+    15000; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,CU:AL;0) 298.15 -126169 + 14.61*T; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,CU:CU;0) 298.15 -126169 + 14.61*T; 6000 N BUH98 !
+
+$ Al-Mg
+PARAM G(LAVES_C36,AL:MG;0) 298.15 2*GHSERAL + GHSERMG +
+    21734 + 11.02*T; 6000 N BUH98 !
+PARAM G(LAVES_C36,MG:AL;0) 298.15 2*GHSERMG + GHSERAL +
+    84970.96 - 16.46448*T; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C36,MG:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,MG:AL;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,MG:MG;0) 298.15 15000; 6000 N BUH98 !
+
+$ Cu-Mg
+PARAM G(LAVES_C36,CU:MG;0) 298.15 -34691 + 364.73085*T - 69.276417*T*LOG(T) +
+    -5.19246E-4*T**2 + 143502*T**(-1) - 5.65953E-6*T**3; 6000 N COST !
+PARAM G(LAVES_C36,MG:CU;0) 298.15 2*GHSERMG + GHSERCU +
+    84970.96 - 16.46448*T; 6000 N COST !
+PARAM G(LAVES_C36,CU,MG:CU;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C36,CU,MG:MG;0) 298.15 13011.35; 6000 N COST !
+PARAM G(LAVES_C36,CU:CU,MG;0) 298.15 6599.45; 6000 N COST !
+PARAM G(LAVES_C36,MG:CU,MG;0) 298.15 6599.45; 6000 N COST !
+
+$ Al-Cu-Mg
+PARAM G(LAVES_C36,AL:CU,MG;0) 298.15 6599.45; 6000 N BUH98 !
+PARAM G(LAVES_C36,CU:AL,MG;0) 298.15 8000; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,CU:MG;0) 298.15 -227442 + 14.61*T; 6000 N BUH98 !
+PARAM G(LAVES_C36,AL,MG:CU;0) 298.15 15000; 6000 N BUH98 !
+PARAM G(LAVES_C36,CU,MG:AL;0) 298.15 13011.35; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CUMG2
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CUMG2 % 2 1 2 !
+CONSTITUENT CUMG2 : CU : MG : !
+
+PARAM G(CUMG2,CU:MG;0) 298.15 GHSERCU + 2*GHSERMG +
+    -28620 + 1.86456*T; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU33SI7_A13
+$ Aliases:         GAMMA
+$ Space group:     P4_132
+$ Strukturbericht: A13
+$ Pearson symbol:  cP20
+$ Prototype:       beta-Mn
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU33SI7_A13 % 2 33 7 !
+CONSTITUENT CU33SI7_A13 : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU33SI7_A13,CU:AL;0) 298.15 33*GHSERCU + 7*GHSERAL +
+    -460000; 6000 N HAL15 !
+
+$ Cu-Si
+PARAM G(CU33SI7_A13,CU:SI;0) 298.15 33*GHSERCU + 7*GHSERSI +
+    -156240 - 163.2*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU33SI7_A13,CU:AL,SI;0) 298.15 -75000; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU33SI7_HT
+$ Aliases:         DELTA
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  tP
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU33SI7_HT % 2 33 7 !
+CONSTITUENT CU33SI7_HT : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU33SI7_HT,CU:AL;0) 298.15 33*GHSERCU + 7*GHSERAL +
+    -460000; 6000 N HAL15 !
+
+$ Cu-Si
+PARAM G(CU33SI7_HT,CU:SI;0) 298.15 33*GHSERCU + 7*GHSERSI +
+    -90160 - 228.8*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU33SI7_HT,CU:AL,SI;0) 298.15 -75000; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU15SI4_D86
+$ Aliases:         EPSILON
+$ Space group:     I-43d
+$ Strukturbericht: D86
+$ Pearson symbol:  cI76
+$ Prototype:       Cu15Si4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU15SI4_D86 % 2 15 4 !
+CONSTITUENT CU15SI4_D86 : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU15SI4_D86,CU:AL;0) 298.15 15*GHSERCU + 4*GHSERAL +
+    -228000; 6000 N HAL15 !
+
+$ Cu-Si
+PARAM G(CU15SI4_D86,CU:SI;0) 298.15 15*GHSERCU + 4*GHSERSI +
+    -88065 - 77.9*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU15SI4_D86,CU:AL,SI;0) 298.15 -30000; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU3SI_HT
+$ Aliases:         ETA
+$ Space group:     R-3m
+$ Strukturbericht: 
+$ Pearson symbol:  hR
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU3SI_HT % 2 0.76 0.24 !
+CONSTITUENT CU3SI_HT : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU3SI_HT,CU:AL;0) 298.15 0.76*GHSERCU + 0.24*GHSERAL +
+    -13000; 6000 N HAL15 !
+
+$ Cu-Si
+PARAM G(CU3SI_HT,CU:SI;0) 298.15 0.76*GHSERCU + 0.24*GHSERSI +
+    -2885 - 6.23*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU3SI_HT,CU:AL,SI;0) 298.15 -2500; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU3SI_MT
+$ Aliases:         ETA_PRIME
+$ Space group:     R-3
+$ Strukturbericht: 
+$ Pearson symbol:  hR9
+$ Prototype:       Cu3Si
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU3SI_MT % 2 0.765 0.235 !
+CONSTITUENT CU3SI_MT : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU3SI_MT,CU:AL;0) 298.15 0.765*GHSERCU + 0.235*GHSERAL +
+    -13000; 6000 N HAL15 !
+
+PARAM G(CU3SI_MT,CU:SI;0) 298.15 0.765*GHSERCU + 0.235*GHSERSI +
+    -4060 - 4.88*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU3SI_MT,CU:AL,SI;0) 298.15 -2500; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CU3SI_LT
+$ Aliases:         ETA_D_PRIME
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  oC
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CU3SI_LT % 2 0.77 0.23 !
+CONSTITUENT CU3SI_LT : CU : AL,SI : !
+
+$ Al-Cu
+PARAM G(CU3SI_LT,CU:AL;0) 298.15 0.77*GHSERCU + 0.23*GHSERAL +
+    -13000; 6000 N HAL15 !
+
+PARAM G(CU3SI_LT,CU:SI;0) 298.15 0.77*GHSERCU + 0.23*GHSERSI +
+    -4770 - 4*T; 6000 N HAL15 !
+
+$ Al-Cu-Si
+PARAM G(CU3SI_LT,CU:AL,SI;0) 298.15 -2500; 6000 N HAL15 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           MG2SI
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE MG2SI % 2 2 1 !
+CONSTITUENT MG2SI : MG : SI : !
+
+PARAM G(MG2SI,MG:SI;0) 298.15 2*GHSERMG + GHSERSI +
+    -64110 + 14.868*T; 6000 N YAN00 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           S_PHASE
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE S_PHASE % 3 2 1 1 !
+CONSTITUENT S_PHASE : AL : CU : MG : !
+
+PARAM G(S_PHASE,AL:CU:MG;0) 298.15 2*GHSERAL + GHSERCU + GHSERMG +
+    -63200 + 4.13*T; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           U_PHASE
+$ Aliases:         Q_PHASE (from BUH98)
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE U_PHASE % 3 7 3 6 !
+CONSTITUENT U_PHASE : AL : CU : MG : !
+
+PARAM G(U_PHASE,AL:CU:MG;0) 298.15 7*GHSERAL + 3*GHSERCU + 6*GHSERMG +
+    -221500 + 18.46*T; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           V_PHASE
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE V_PHASE % 3 5 6 2 !
+CONSTITUENT V_PHASE : AL : CU : MG : !
+
+PARAM G(V_PHASE,AL:CU:MG;0) 298.15 5*GHSERAL +6*GHSERCU + 2*GHSERMG +
+    -274527.45 + 13*T; 6000 N BUH98 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           T_PHASE
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE T_PHASE % 4 26 6 48 1 !
+CONSTITUENT T_PHASE : MG : AL,MG : AL,CU,MG : AL : !
+
+PARAM G(T_PHASE,MG:MG:AL:AL;0) 298.15 49*GHSERAL + 32*GHSERMG +
+        -81000 - 186.3*T; 6000 N !
+PARAM G(T_PHASE,MG:MG:CU:AL;0) 298.15 GHSERAL + 48*GHSERCU + 32*GHSERMG +
+        -220000 + 440*T; 6000 N !
+PARAM G(T_PHASE,MG:MG:MG:AL;0) 298.15 GHSERAL + 80*GHSERMG +
+        405000 + 243*T; 6000 N !
+PARAM G(T_PHASE,MG:AL:AL:AL;0) 298.15 55*GHSERAL + 26*GHSERMG +
+        -105.3*T; 6000 N !
+PARAM G(T_PHASE,MG:AL:CU:AL;0) 298.15 7*GHSERAL + 48*GHSERCU + 26*GHSERMG +
+        23000 + 440*T; 6000 N !
+PARAM G(T_PHASE,MG:AL:MG:AL;0) 298.15 7*GHSERAL + 74*GHSERMG +
+        1053000 + 405*T; 6000 N !
+PARAM G(T_PHASE,MG:MG:AL,CU:AL;0) 298.15 -4649190 + 2261.85*T; 6000 N !
+PARAM G(T_PHASE,MG:AL:AL,CU:AL;0) 298.15 -4649190 + 2261.86*T; 6000 N !
+PARAM G(T_PHASE,MG:MG:AL,MG:AL;0) 298.15 -202500 - 40.5*T; 6000 N !
+PARAM G(T_PHASE,MG:MG:CU,MG:AL;0) 298.15 -220000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CUMGSI_TAU
+$ Aliases:         
+$ Space group:     Fm-3m
+$ Strukturbericht: 
+$ Pearson symbol:  cF112
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CUMGSI_TAU % 3 16 6 7 !
+CONSTITUENT CUMGSI_TAU : CU : MG : SI : !
+
+PARAM G(CUMGSI_TAU,CU:MG:SI;0) 298.15 16*GHSERCU + 6*GHSERMG + 7*GHSERSI +
+    -559636 + 110.94*T; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           CUMGSI_SIGMA
+$ Aliases:         
+$ Space group:     P6_3/mmc
+$ Strukturbericht: 
+$ Pearson symbol:  hP12
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE CUMGSI_SIGMA % 3 3 2 1 !
+CONSTITUENT CUMGSI_SIGMA : CU : MG : SI : !
+
+PARAM G(CUMGSI_SIGMA,CU:MG:SI;0) 298.15 3*GHSERCU + 2*GHSERMG + GHSERSI +
+    -141720 + 20.26*T; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           Q_PHASE
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE V_PHASE % 4 0.1429 0.0952 0.4286 0.3333 !
+CONSTITUENT V_PHASE : AL : CU : MG : SI : !
+
+PARAM G(V_PHASE,AL:CU:MG;0) 298.15 0.1429*GHSERAL +0.0952*GHSERCU + 
+    0.4286*GHSERMG + 0.3333*GHSERSI - 17791 + 1.5333*T + 
+    9.99877E-4*T**2; 6000 N MOOR20 !
