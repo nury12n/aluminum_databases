@@ -864,21 +864,21 @@ PHASE T_PHASE % 4 26 6 48 1 !
 CONSTITUENT T_PHASE : MG : AL,MG : AL,CU,MG : AL : !
 
 PARAM G(T_PHASE,MG:MG:AL:AL;0) 298.15 49*GHSERAL + 32*GHSERMG +
-        -81000 - 186.3*T; 6000 N !
+        -81000 - 186.3*T; 6000 N BUH98 !
 PARAM G(T_PHASE,MG:MG:CU:AL;0) 298.15 GHSERAL + 48*GHSERCU + 32*GHSERMG +
-        -220000 + 440*T; 6000 N !
+        -220000 + 440*T; 6000 N BUH98 !
 PARAM G(T_PHASE,MG:MG:MG:AL;0) 298.15 GHSERAL + 80*GHSERMG +
-        405000 + 243*T; 6000 N !
+        405000 + 243*T; 6000 N BUH98 !
 PARAM G(T_PHASE,MG:AL:AL:AL;0) 298.15 55*GHSERAL + 26*GHSERMG +
-        -105.3*T; 6000 N !
+        -105.3*T; 6000 N BUH98 !
 PARAM G(T_PHASE,MG:AL:CU:AL;0) 298.15 7*GHSERAL + 48*GHSERCU + 26*GHSERMG +
-        23000 + 440*T; 6000 N !
+        23000 + 440*T; 6000 N BUH98 !
 PARAM G(T_PHASE,MG:AL:MG:AL;0) 298.15 7*GHSERAL + 74*GHSERMG +
-        1053000 + 405*T; 6000 N !
-PARAM G(T_PHASE,MG:MG:AL,CU:AL;0) 298.15 -4649190 + 2261.85*T; 6000 N !
-PARAM G(T_PHASE,MG:AL:AL,CU:AL;0) 298.15 -4649190 + 2261.86*T; 6000 N !
-PARAM G(T_PHASE,MG:MG:AL,MG:AL;0) 298.15 -202500 - 40.5*T; 6000 N !
-PARAM G(T_PHASE,MG:MG:CU,MG:AL;0) 298.15 -220000; 6000 N !
+        1053000 + 405*T; 6000 N BUH98 !
+PARAM G(T_PHASE,MG:MG:AL,CU:AL;0) 298.15 -4649190 + 2261.85*T; 6000 N BUH98 !
+PARAM G(T_PHASE,MG:AL:AL,CU:AL;0) 298.15 -4649190 + 2261.86*T; 6000 N BUH98 !
+PARAM G(T_PHASE,MG:MG:AL,MG:AL;0) 298.15 -202500 - 40.5*T; 6000 N BUH98 !
+PARAM G(T_PHASE,MG:MG:CU,MG:AL;0) 298.15 -220000; 6000 N BUH98 !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           CUMGSI_TAU
@@ -922,3 +922,26 @@ CONSTITUENT V_PHASE : AL : CU : MG : SI : !
 PARAM G(V_PHASE,AL:CU:MG;0) 298.15 0.1429*GHSERAL +0.0952*GHSERCU + 
     0.4286*GHSERMG + 0.3333*GHSERSI - 17791 + 1.5333*T + 
     9.99877E-4*T**2; 6000 N MOOR20 !
+
+$ References
+$ -------------------------------------------------------------------------
+$ UNA09: Alan Dinsdale, SGTE Data for Pure Elements, 
+$        Calphad Vol 15(1991) pp. 317-425 
+$ LIA15: S.M. Liang, R. Schmid-Fetzer, Calphad, 51 (2015) 252
+$ ZHO05: Y. Zhong, M. Yang, Z.K. Liu, Computer Coupling of Phase Diagrams
+$        and Thermochemistry 29 (2005) 303
+$ LIU99: Z.K. Liu, Y.A. Cheng, Metallurgical and Materials Transactions A
+$        30A (1999) 1081
+$ COST: I. Ansara, A.T. Dinsdale, M.H. Rand, COST 507 Report, 1998
+$ HAL15: B. Hallstedt, J. Grobner, M. Hampl, R. Schmid-Fetzer, Calphad
+$        53 (2015) 25
+$ KEV04: D.  Keverkov, R. Schmid-Fetzer, F. Zhang, Journal of Phase
+$        Equilibria and Diffusion 25 (2004) 140
+$ MOOR20: E.E. Moore, P.E.A. Turchi, V. Lordi, D. Weiss, Z.C. Sims,
+$         H.B. Henderson, M.S. Kesler, O. Rios, S.K. McCall, A. Perron,
+$         Journal of Phase Equilibria and Diffusion 41 (2020) 764
+$ BUH98: T. Buhler, S.G. Fries, P.J. Spencer, Journal of Phase Equilibria
+$        19 (1998) 317
+$ YAN00: X.Y. Yan, F. Zhang, Y.A. Chang, Journal of Phase Equilibria
+$        21 (2000) 379
+$ 
