@@ -1,14 +1,14 @@
 """
 Script to plot a binary and save to pictures folder
 """
-DATABASE = "Al-Cu-Mg-Si.tdb"
-#DATABASE = "AlCuSi-15Hal-final.tdb"
-COMPONENTS = ["AL", "MG", "SI", "VA"]
+DATABASE = "Cu-Fe-Si_Soldi_2019.tdb"
+COMPONENTS = ["CU", "FE", "SI", "VA"]
 PHASES = None
+#PHASES = ['LIQUID', 'FCC_A1', 'GAMMA', 'GAMMA_2', 'EPSILON', 'EPSILON_2', 'TAU', 'DELTA', 'BCC_B2']
 
-TEMPERATURE = 770+273
+TEMPERATURE = 1350+273
 PRESSURE = 101325
-X = "MG"
+X = "CU"
 Y = "SI"
 
 SAVE_FIGURE = False
@@ -25,7 +25,8 @@ db = Database('databases/' + DATABASE)
 conds = {v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): (0, 1, 0.01), v.X(Y): (0, 1, 0.01)}
 
 db_path = os.path.join("databases", DATABASE)
-strategy = TernaryStrategy(db_path, COMPONENTS, PHASES, conds, GLOBAL_MIN_NUM_CANDIDATES=10000)
+strategy = TernaryStrategy(db_path, COMPONENTS, PHASES, conds, GLOBAL_MIN_NUM_CANDIDATES=1000)
+#strategy.add_nodes_from_conditions({v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): 0.3, v.X(Y):0.3})
 strategy.initialize()
 strategy.do_map()
 

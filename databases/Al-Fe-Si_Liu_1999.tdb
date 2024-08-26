@@ -1,0 +1,454 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ AL-FE-SI
+$ Z.K. Liu, Y.A. Chang, Thermodynamic Assessment of the Al-Fe-Si System,
+$ Metallurgical and Materials Transactions A 30 (1999) 1081
+$
+$ Phases
+$ Al13Fe4 (Al)0.6275(Fe)0.235(Al,Si,Va)0.1375
+$ Al2Fe   (Al)2(Fe)1
+$ Al5Fe2  (Al)5(Fe)2
+$ Al5Fe4  (Al,Fe)
+$ ALPHA   (Al)0.66(Fe)0.19(Si)0.05
+$ BCC_A2  (Al,Fe,Si)1(Va)3
+$ BCC_B2  (Al,Fe,Si)0.5(Al,Fe,Si)0.5(Va)3
+$ BETA    (Al)0.598(Fe)0.152(Si)0.10
+$ DELTA   (Al)0.49(Fe)0.16(Si)0.35
+$ DIAMOND_A4 (Al,Si)1
+$ FCC_A1     (Al,Fe,Si)1(Va)1
+$ FE2SI      (Fe)2(Si)1
+$ FE5SI3     (Fe)5(Si)3
+$ FESI       (Fe)1(Si)1
+$ FESI2      (Fe)1(Al,Si)2
+$ LIQUID     (Al,Fe,Si)
+$ TAU        (Al)0.4(Fe)0.25(Si)0.35
+$ TAU_1      (Al)0.35(Fe)0.37(Si)0.28
+$ TAU_23     (Al)0.54(Fe)0.26(Si)0.2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT FE   BCC_A2                    5.5847E+01  4.4890E+03  2.7280E+01 !
+ELEMENT SI   DIAMOND_A4                2.8085E+01  3.2175E+03  1.8820E+01 !
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+  -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+
+
+$ Fe
+$ -------------------------------------
+FUNCTION GHSERFE  298.15
+ 1225.7+124.134*T-23.5143*T*LN(T)-4.39752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -25383.581+299.31255*T-46*T*LN(T)+2296.03E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GFCCFE   298.15
+ -236.7+132.416*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -27097.3963+300.252559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GLIQFE 298.15 12040.17-6.55843*T-367.516E-23*T**7+GHSERFE; 1811 Y
+ -10838.83+291.302*T-46*T*LN(T);  6000.00 N !
+ 
+FUNCTION GHCPFE   298.15
+ -2480.08+136.725*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1);  1811.00 Y
+ -29340.776+304.561559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+
+$ Si
+$ -------------------------------------
+FUNCTION GHSERSI  298.15
+ -8162.609+137.236859*T-22.8317533*T*LN(T)-1.912904E-3*T**2-0.003552E-6*T**3
+ +176667*T**(-1);  1687.00 Y
+ -9457.642+167.281367*T-27.196*T*LN(T)-420.369E28*T**(-9);  3600.00 N !
+ 
+FUNCTION GLIQSI 298.15 50696.36-30.099439*T+209.307E-23*T**7+GHSERSI; 1687 Y
+ 40370.523+137.722298*T-27.196*T*LN(T);  3600.00 N !
+ 
+FUNCTION GBCCSI 298.15 47000-22.5*T+GHSERSI; 3600 N !
+ 
+FUNCTION GFCCSI 298.15 51000-21.8*T+GHSERSI; 3600 N !
+ 
+FUNCTION GHCPSI 298.15 49200-20.8*T+GHSERSI; 3600 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL13FE4
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL13FE4 % 3 0.6275 0.235 0.1375 !
+CONSTITUENT AL13FE4 : AL : FE : AL,SI,VA : !
+
+PARAM G(AL13FE4,AL:FE:AL;0) 298.15 0.765*GHSERAL + 0.235*GHSERFE +
+    -30714.3 + 7.44*T; 6000 N LIU99 !
+PARAM G(AL13FE4,AL:FE:VA;0) 298.15 0.6275*GHSERAL + 0.235*GHSERFE +
+    -27781.3 + 7.2566*T; 6000 N LIU99 !
+PARAM G(AL13FE4,AL:FE:SI;0) 298.15 0.6273*GHSERAL + 0.235*GHSERFE +
+    0.1375*GHSERSI - 30118 + 6.965*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL2FE
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL2FE % 2 2 1 !
+CONSTITUENT AL2FE : AL : FE : !
+
+PARAM G(AL2FE,AL:FE;0) 298.15 2*GHSERAL + GHSERFE +
+    -98096.9 + 18.7503*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL5FE2
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL5FE2 % 2 5 2 !
+CONSTITUENT AL5FE2 : AL : FE : !
+
+PARAM G(AL5FE2,AL:FE;0) 298.15 5*GHSERAL + 2*GHSERFE +
+    -228576 + 48.99503*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL5FE4
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL5FE4 % 1 1 !
+CONSTITUENT AL5FE4 : AL,FE : !
+
+PARAM G(AL5FE4,AL;0) 298.15 GHSERAL + 12178.9 - 4.813*T; 6000 N LIU99 !
+PARAM G(AL5FE4,FE;0) 298.15 GHSERFE + 5009.03; 6000 N LIU99 !
+PARAM G(AL5FE4,AL,FE;0) 298.15 -131649 + 29.4833*T; 6000 N LIU99 !
+PARAM G(AL5FE4,AL,FE;1) 298.15 -18619.5; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ALPHA
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ALPHA % 4 0.66 0.19 0.05 0.10 !
+CONSTITUENT ALPHA : AL : FE : SI : AL,SI : !
+
+PARAM G(ALPHA,AL:FE:SI:AL;0) 298.15 0.76*GHSERAL + 0.19*GHSERFE +
+    0.05*GHSERSI - 27788 + 8.856*T; 6000 N LIU99 !
+PARAM G(ALPHA,AL:FE:SI:SI;0) 298.15 0.66*GHSERAL + 0.19*GHSERFE +
+    0.15*GHSERSI - 26500 + 6.135*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_A2
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$
+$ Notes: Parameters for BCC_A2 and BCC_B2 for Fe-Si were taken directly
+$ from the Cost 507 database. These are from the same original assessment
+$ of J. Lacaze, B. Sundman, Metall. Trans. A (1991) 22A 2211, but all
+$ three papers (Liu et al, Lacaze and Sundman, and Cost 507 report) seemed
+$ to have reported the parameters in a way that I couldn't figure out
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION & GES A_P_D BCC_A2 MAGNETIC -1.0 0.4 !
+PHASE BCC_A2 %& 2 1 3 !
+CONSTITUENT BCC_A2 : AL,FE,SI : VA : !
+
+PARAM G(BCC_A2,AL:VA;0) 298.15 GBCCAL; 6000 N UNA50 !
+PARAM G(BCC_A2,FE:VA;0) 298.15 GHSERFE; 6000 N UNA50 !
+PARAM G(BCC_A2,SI:VA;0) 298.15 GBCCSI; 6000 N UNA50 !
+PARAM TC(BCC_A2,FE:VA;0) 298.15 1043; 6000 N UNA50 !
+PARAM BM(BCC_A2,FE:VA;0) 298.15 2.22; 6000 N UNA50 !
+
+PARAM G(BCC_A2,AL,FE:VA;0) 298.15 4*(-30740 + 7.9972*T); 6000 N LIU99 !
+PARAM G(BCC_A2,AL,FE:VA;1) 298.15 2945.2; 6000 N LIU99 !
+PARAM TC(BCC_A2,AL,FE:VA;0) 298.15 504; 6000 N !
+
+PARAM G(BCC_A2,FE,SI:VA;0) 298.15 4*(-27809 + 11.62*T) +
+    - 4*1260*8.314; 6000 N COST !
+PARAM G(BCC_A2,FE,SI:VA;1) 298.15 -8*11544; 6000 N COST !
+PARAM G(BCC_A2,FE,SI:VA;2) 298.15 16*3890; 6000 N COST !
+PARAM TC(BCC_A2,FE,SI:VA;0) 298.15 8*63; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_B2
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION B GES A_P_D BCC_B2 MAGNETIC -1.0 0.4 !
+TYPE_DEFINITION C GES A_P_D BCC_B2 DIS_PART BCC_A2 !
+PHASE BCC_B2 %BC 3 0.5 0.5 3 !
+CONSTITUENT BCC_B2 : AL,FE,SI : AL,FE,SI : VA : !
+
+PARAM G(BCC_B2,AL:FE:VA;0) 298.15 -1720*8.314; 6000 N LIU99 !
+PARAM G(BCC_B2,FE:AL:VA;0) 298.15 -1720*8.314; 6000 N LIU99 !
+
+PARAM G(BCC_B2,FE:SI:VA;0) 298.15 -2*1260*8.314; 6000 N COST !
+PARAM G(BCC_B2,SI:FE:VA;0) 298.15 -2*1260*8.314; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BETA
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE BETA % 4 0.598 0.152 0.10 0.15 !
+CONSTITUENT BETA : AL : FE : SI : AL,SI : !
+
+PARAM G(BETA,AL:FE:SI:AL;0) 298.15 0.748*GHSERAL + 0.152*GHSERFE +
+    0.1*GHSERSI - 19649 + 4.209*T; 6000 N LIU99 !
+PARAM G(BETA,AL:FE:SI:SI;0) 298.15 0.598*GHSERAL + 0.152*GHSERFE +
+    0.25*GHSERSI - 22008 + 6.426*T; 6000 N LIU99 !
+PARAM G(BETA,AL:FE:SI:AL,SI;0) 298.15 -2821; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           DELTA
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DELTA % 3 0.49 0.16 0.35 !
+CONSTITUENT DELTA : AL : FE : SI : !
+
+PARAM G(DELTA,AL:FE:SI;0) 298.15 0.49*GHSERAL + 0.16*GHSERFE + 
+    0.35*GHSERSI - 21618 + 3.617*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           DIAMOND_A4
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DIAMOND_A4 % 1 1 !
+CONSTITUENT DIAMOND_A4 : AL, SI : !
+
+PARAM G(DIAMOND_A4,AL;0) 298.15 30*T+GHSERAL; 6000 N UNA50 !
+PARAM G(DIAMOND_A4,SI;0) 298.15 GHSERSI; 6000 N UNA50 !
+PARAM G(DIAMOND_A4,AL,SI;0) 298.15 111417.7 - 46.1392*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FCC_A1
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION ( GES A_P_D FCC_A1 MAGNETIC -3.0 0.28 !
+PHASE FCC_A1 %( 2 1 1 !
+CONSTITUENT FCC_A1 : AL, FE, SI : VA : !
+
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N UNA50 !
+PARAM G(FCC_A1,FE:VA;0) 298.15 GFCCFE; 6000 N UNA50 !
+PARAM G(FCC_A1,SI:VA;0) 298.15 GFCCSI; 6000 N UNA50 !
+PARAM TC(FCC_A1,FE:VA;0) 298.15 -201; 6000 N !
+PARAM BM(FCC_A1,FE:VA;0) 298.15 -2.10; 6000 N !
+
+PARAM G(FCC_A1,AL,FE:VA;0) 298.15 -76066.1 + 18.6758*T; 6000 N LIU99 !
+PARAM G(FCC_A1,AL,FE:VA;1) 298.15 21164.4 + 1.3398*T; 6000 N LIU99 !
+
+PARAM G(FCC_A1,AL,SI:VA;0) 298.15 -3423.91 - 0.09584*T; 6000 N LIU99 !
+
+PARAM G(FCC_A1,FE,SI:VA;0) 298.15 -125247.7 + 41.166*T; 6000 N LIU99 !
+PARAM G(FCC_A1,FE,SI:VA;1) 298.15 -142707.6; 6000 N LIU99 !
+PARAM G(FCC_A1,FE,SI:VA;2) 298.15 89907.3; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FE2SI
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FE2SI % 2 2 1 !
+CONSTITUENT FE2SI : FE : SI : !
+
+PARAM G(FE2SI,FE:SI;0) 298.15 2*GHSERFE + GHSERSI + 
+    -71256.6 - 10.62*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FE5SI3
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FE5SI3 % 2 5 3 !
+CONSTITUENT FE5SI3 : FE : SI : !
+
+PARAM G(FE5SI3,FE:SI;0) 298.15 5*GHSERFE + 3*GHSERSI + 
+    -241144 + 2.16*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI % 2 1 1 !
+CONSTITUENT FESI : FE : SI : !
+
+PARAM G(FESI,FE:SI;0) 298.15 GHSERFE + GHSERSI + 
+    -72761.2 + 4.44*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI2_H
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI2_H % 2 3 7 !
+CONSTITUENT FESI2_H : FE : AL, SI : !
+
+PARAM G(FESI2_H,FE:SI;0) 298.15 3*GHSERFE + 7*GHSERSI + 
+    -196490 - 9.2*T; 6000 N LIU99 !
+PARAM G(FESI2_H,FE:AL;0) 298.15 3*GHSERFE + 7*GHSERAL + 
+    -116934 + 35*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI2_L
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI2_L % 2 1 2 !
+CONSTITUENT FESI2_L : FE : AL, SI : !
+
+PARAM G(FESI2_L,FE:SI;0) 298.15 GHSERFE + 2*GHSERSI + 
+    -82149 + 10.44*T; 6000 N LIU99 !
+PARAM G(FESI2_L,FE:AL;0) 298.15 GHSERFE + 2*GHSERAL + 
+    -69000 + 10.44*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA % 3 0.635 0.205 0.16 !
+CONSTITUENT GAMMA : AL : FE : SI : !
+
+PARAM G(GAMMA,AL:FE:SI;0) 298.15 0.635*GHSERAL + 0.205*GHSERFE +
+    0.16*GHSERSI - 28144 + 5.992*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LIQUID
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL, FE, SI : !
+
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N UNA50 !
+PARAM G(LIQUID,FE;0) 298.15 GLIQFE; 6000 N UNA50 !
+PARAM G(LIQUID,SI;0) 298.15 GLIQSI; 6000 N UNA50 !
+
+PARAM G(LIQUID,AL,FE;0) 298.15 -91976.5 + 22.1314*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,FE;1) 298.15 -5672.58 + 4.8728*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,FE;2) 298.15 121.9; 6000 N LIU99 !
+
+PARAM G(LIQUID,AL,SI;0) 298.15 -11655.93 + 0.92934*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,SI;1) 298.15 -2873.45 + 0.2945*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,SI;2) 298.15 2520; 6000 N LIU99 !
+
+PARAM G(LIQUID,FE,SI;0) 298.15 -164434.6 + 41.9773*T; 6000 N LIU99 !
+PARAM G(LIQUID,FE,SI;1) 298.15 -21.523*T; 6000 N LIU99 !
+PARAM G(LIQUID,FE,SI;2) 298.15 -18821.542 + 22.07*T; 6000 N LIU99 !
+PARAM G(LIQUID,FE,SI;3) 298.15 9695.8; 6000 N LIU99 !
+
+PARAM G(LIQUID,AL,FE,SI;0) 298.15 -96667 + 63.727*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,FE,SI;1) 298.15 -50575 + 63.727*T; 6000 N LIU99 !
+PARAM G(LIQUID,AL,FE,SI;2) 298.15 -62178 + 63.727*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           TAU
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE TAU % 3 0.4 0.25 0.35 !
+CONSTITUENT TAU : AL : FE : SI : !
+
+PARAM G(TAU,AL:FE:SI;0) 298.15 0.4*GHSERAL + 0.25*GHSERFE + 0.35*GHSERSI +
+    -28589 + 4.255*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           TAU_1
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE TAU_1 % 3 0.35 0.37 0.28 !
+CONSTITUENT TAU_1 : AL : FE : SI : !
+
+PARAM G(TAU_1,AL:FE:SI;0) 298.15 0.35*GHSERAL + 0.37*GHSERFE + 
+    0.28*GHSERSI - 37527 + 5.874*T; 6000 N LIU99 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           TAU_23
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE TAU_23 % 3 0.54 0.26 0.2 !
+CONSTITUENT TAU_23 : AL : FE : SI : !
+
+PARAM G(TAU_23,AL:FE:SI;0) 298.15 0.54*GHSERAL + 0.26*GHSERFE + 
+    0.2*GHSERSI - 31812 + 5.965*T; 6000 N LIU99 !

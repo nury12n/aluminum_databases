@@ -1,8 +1,9 @@
 """
 Script to plot a binary and save to pictures folder
 """
-DATABASE = "Al-Cu-Mg-Si.tdb"
-COMPONENTS = ["MG", "SI", "VA"]
+DATABASE = "Cu-Fe-Si_Soldi_2019.tdb"
+COMPONENTS = ["CU", "SI", "VA"]
+#PHASES = ['LIQUID', 'BCC_B2', 'DIAMOND_A4', 'FESI2_L', 'FESI2_H', 'FE5SI3', 'FESI', 'FE2SI']
 PHASES = None
 
 TEMPERATURE_LIMITS = [300, 4000]

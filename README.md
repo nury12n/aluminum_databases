@@ -10,12 +10,12 @@ This will also include databases for additional properties such as thermal condu
 - scripts - any python scripts to test the database
 - models (not added yet) - custom pycalphad models for extra properties such as thermal conductivity
 
-### Required packages
+### Required packages for running any of the scripts
 - numpy
 - matplotlib
 - pycalphad
 
 ### TODOs
-- Fill out the phase information in the Al-Cu-Mg-Si.tdb with space group, Strukturbericht, Pearson symbol and prototype to make it easier to know what models are compatible when merging databases
+- Fill out the phase information in the each database with space group, Strukturbericht, Pearson symbol and prototype to make it easier to know what models are compatible when merging databases
 - Binary and ternary phase diagram plotting is there to compare with literature assessments. Should we also include isopleths when possible?
 - Add links here to other large databases
