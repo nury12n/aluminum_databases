@@ -87,7 +87,12 @@ PARAM G(LIQUID,AL,CU,ZN;1) 298.15 13000; 6000 N !
 PARAM G(LIQUID,AL,CU,ZN;2) 298.15 43800; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ FCC_A1
+$ Phase:           FCC_A1
+$ Aliases:         
+$ Space group:     Fm-3m
+$ Strukturbericht: A1
+$ Pearson symbol:  cF4
+$ Prototype:       Cu
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FCC_A1 % 2 1 1 !
 CONSTITUENT FCC_A1 : AL,CU,ZN : VA : !
@@ -113,7 +118,12 @@ PARAM G(FCC_A1,AL,CU,ZN:VA;1) 298.15 0; 6000 N !
 PARAM G(FCC_A1,AL,CU,ZN:VA;2) 298.15 90000; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ HCP_A3
+$ Phase:           HCP_A3
+$ Aliases:         
+$ Space group:     P63/mmc
+$ Strukturbericht: A3
+$ Pearson symbol:  hP2
+$ Prototype:       Mg
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE HCP_A3 % 2 1 0.5 !
 CONSTITUENT HCP_A3 : AL,CU,ZN : VA : !
@@ -130,7 +140,12 @@ PARAM G(HCP_A3,CU,ZN:VA;0) 298.15 -15492.5 - 12.276*T; 6000 N !
 PARAM G(HCP_A3,AL,CU:VA;0) 298.15 38107; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ BCC_A2
+$ Phase:           BCC_A2
+$ Aliases:         
+$ Space group:     Im-3m
+$ Strukturbericht: A2
+$ Pearson symbol:  cI2
+$ Prototype:       W
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE BCC_A2 % 2 1 3 !
 CONSTITUENT BCC_A2 : AL,CU,ZN : VA : !
@@ -153,7 +168,12 @@ PARAM G(BCC_A2,AL,CU,ZN:VA;1) 298.15 -30000 + 20*T; 6000 N !
 PARAM G(BCC_A2,AL,CU,ZN:VA;2) 298.15 -10000; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ BCC_B2
+$ Phase:           BCC_B2
+$ Aliases:         
+$ Space group:     Pm-3m
+$ Strukturbericht: B2
+$ Pearson symbol:  cP2
+$ Prototype:       CsCl
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 TYPE_DEFINITION C GES A_P_D BCC_B2 DIS_PART BCC_A2 !
 PHASE BCC_B2 %C 3 0.5 0.5 3 !
@@ -169,7 +189,12 @@ PARAM G(BCC_B2,CU,ZN:CU:VA;0) 298.15 3075; 6000 N !
 PARAM G(BCC_B2,CU,ZN:ZN:VA;0) 298.15 3075; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ GAMMA
+$ Phase:           GAMMA
+$ Aliases:         GAMMA_1
+$ Space group:     P-43m
+$ Strukturbericht: 
+$ Pearson symbol:  cP52
+$ Prototype:       Cu9Al4
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE GAMMA % 3 4 6 16 !
 CONSTITUENT GAMMA : CU : CU,ZN : AL,CU,ZN : !
@@ -192,7 +217,12 @@ PARAM G(GAMMA,CU:CU:AL,CU;1) 298.15 -1585780 - 100*T; 6000 N !
 PARAM G(GAMMA,CU:CU:AL,ZN;0) 298.15 -574960 - 200*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ GAMMA_2
+$ Phase:           GAMMA_2
+$ Aliases:         
+$ Space group:     I-43m
+$ Strukturbericht: 
+$ Pearson symbol:  cI52
+$ Prototype:       Cu5Zn8
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE GAMMA_2 % 3 4 6 16 !
 CONSTITUENT GAMMA_2 : CU : CU,ZN : AL,CU,ZN : !
@@ -214,7 +244,12 @@ PARAM G(GAMMA_2,CU:CU:AL,CU;1) 298.15 -1516652.4 - 92*T; 6000 N !
 PARAM G(GAMMA_2,CU:CU:AL,ZN;0) 298.15 -70960 - 680*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ DELTA
+$ Phase:           DELTA
+$ Aliases:         
+$ Space group:     P-6
+$ Strukturbericht: 
+$ Pearson symbol:  hP3
+$ Prototype:       CuZn3
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE DELTA % 1 1 !
 CONSTITUENT DELTA : AL,CU,ZN : !
@@ -232,7 +267,12 @@ PARAM G(DELTA,CU,ZN;0) 298.15 -54593.9 + 12.8111*T; 6000 N !
 PARAM G(DELTA,CU,ZN;1) 298.15 142 + 6.0249*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ EPSILON
+$ Phase:           EPSILON
+$ Aliases:         EPS
+$ Space group:     P6_3/mmc
+$ Strukturbericht: 
+$ Pearson symbol:  hP2
+$ Prototype:       Mg
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE EPSILON % 1 1 !
 CONSTITUENT EPSILON : AL,CU,ZN : !
@@ -253,7 +293,12 @@ PARAM G(EPSILON,AL,CU,ZN;1) 298.15 -218000; 6000 N !
 PARAM G(EPSILON,AL,CU,ZN;2) 298.15 38500; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ ALPHA_2
+$ Phase:           ALPHA_2
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       TiAl3
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE ALPHA_2 % 0.23 0.77 !
 CONSTITUENT ALPHA_2 : AL : CU : !
@@ -262,7 +307,12 @@ PARAM G(ALPHA_2,AL:CU;0) 298.15 0.23*GHSERAL + 0.77*GHSERCU +
     -13904.9 - 3*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ DELTA_1
+$ Phase:           DELTA_1
+$ Aliases:         DELTA
+$ Space group:     R-3m
+$ Strukturbericht: 
+$ Pearson symbol:  hR*
+$ Prototype:       Al5Cu8
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE DELTA_1 % 2 5 8 !
 CONSTITUENT DELTA_1 : AL : CU : !
@@ -271,7 +321,12 @@ PARAM G(DELTA_1,AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU +
     -278450 + 5.2*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ XI
+$ Phase:           XI
+$ Aliases:         
+$ Space group:     Fmm2 or Imm2
+$ Strukturbericht: 
+$ Pearson symbol:  oF88 or oI24
+$ Prototype:       Cu47.8Al35.5 or Cu11.5Al9.0 or Al9Cu11
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE XI % 2 9 11 !
 CONSTITUENT XI : AL,CU : CU : !
@@ -284,7 +339,12 @@ PARAM G(XI,AL,CU:CU;0) 298.15 0; 6000 N !
 PARAM G(XI,AL,CU:CU;1) 298.15 -413300 + 100*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ EPSILON_2
+$ Phase:           EPSILON_2
+$ Aliases:         
+$ Space group:     P6_3/mmc
+$ Strukturbericht: 
+$ Pearson symbol:  hP6
+$ Prototype:       Ni2In
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE EPSILON_2 % 2 1 1 !
 CONSTITUENT EPSILON_2 : AL,CU,ZN : CU : !
@@ -299,7 +359,12 @@ PARAM G(EPSILON_2,ZN:CU;0) 298.15 GHSERCU + GHSERZN +
 PARAM G(EPSILON_2,AL,CU:CU;0) 298.15 -56870 - 55*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ ETA_1
+$ Phase:           ETA_1
+$ Aliases:         
+$ Space group:     Cmmm
+$ Strukturbericht: 
+$ Pearson symbol:  oS32
+$ Prototype:       Cu0.94Al0.94
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE ETA_1 % 2 1 1 !
 CONSTITUENT ETA_1 : AL,CU : CU,ZN : !
@@ -316,7 +381,12 @@ PARAM G(ETA_1,AL,CU:CU;0) 298.15 0; 6000 N !
 PARAM G(ETA_1,AL,CU:CU;1) 298.15 -43168 - 18.5*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ ETA_2
+$ Phase:           ETA_2
+$ Aliases:         
+$ Space group:     C2/m
+$ Strukturbericht: 
+$ Pearson symbol:  mC20
+$ Prototype:       CuAl
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE ETA_2 % 2 0.48 0.52 !
 CONSTITUENT ETA_2 : AL : CU : !
@@ -325,7 +395,12 @@ PARAM G(ETA_2,AL:CU;0) 298.15 0.48*GHSERAL + 0.52*GHSERCU +
     -20987 + 1.62*T; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ THETA
+$ Phase:           THETA
+$ Aliases:         
+$ Space group:     I4/mcm
+$ Strukturbericht: 
+$ Pearson symbol:  tI12
+$ Prototype:       CuAl2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE THETA % 2 2 1 !
 CONSTITUENT THETA : AL : AL,CU : !
@@ -336,7 +411,12 @@ PARAM G(THETA,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
 PARAM G(THETA,AL:AL,CU;0) 298.15 2211; 6000 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$ TAU
+$ Phase:           TAU
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  cP2
+$ Prototype:       CsCl or Al5Cu4Zn
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE TAU % 4 1 4 4 1 !
 CONSTITUENT TAU : AL,CU : AL : CU : ZN : !

@@ -1,0 +1,336 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ AL-CU-FE
+$ H.L. Chen, Y. Du, H. Xu, W. Xiong, Journal of Materials Research 24
+$ (2009) 3154
+$
+$ Notes:
+$    I could not fully replicate the BCC_A2/BCC_B2 phase regions using the
+$    parameters from this paper. The closest I got was to negate the
+$    L_Al,CU:FE, L_FE:AL,CU, L_CU,FE:AL and L_AL:CU,FE parameters
+$    This paper also uses vacancies in the substitutional lattice of
+$    BCC_A2/BCC_B2. I left them here, but when merging, I will be removing
+$    them to maintain compatibility with the other databases and as it
+$    does not appear to affect the phase equilibria whether or not the
+$    parameters for VA in the substitutional lattice are present or not
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AL   FCC_A1                    2.6982E+01  4.5773E+03  2.8322E+01 !
+ELEMENT CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01 !
+ELEMENT FE   BCC_A2                    5.5847E+01  4.4890E+03  2.7280E+01 !
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+
+$ Al
+$ -------------------------------------
+FUNCTION GHSERAL 298.15
+ -7976.15+137.093038*T-24.3671976*T*LN(T)-1.884662E-3*T**2-0.877664E-6*T**3
+ +74092*T**(-1); 700 Y
+ -11276.24+223.048446*T-38.5844296*T*LN(T)+18.531982E-3*T**2-5.764227E-6*T**3
+ +74092*T**(-1); 933.473 Y
+ -11278.361+188.684136*T-31.748192*T*LN(T)-1230.622E25*T**(-9); 2900 N !
+ 
+FUNCTION GHCPAL 298.15 5481-1.8*T+GHSERAL; 2900 N !
+ 
+FUNCTION GBCCAL 298.15 10083-4.813*T+GHSERAL; 2900 N !
+ 
+FUNCTION GLIQAL 298.15 11005.045-11.84185*T+79.337E-21*T**7+GHSERAL; 933.473 Y
+  -795.991+177.430209*T-31.748192*T*LN(T); 2900 N !
+
+$ Cu
+$ -------------------------------------
+FUNCTION GHSERCU  298.15
+ -7770.458+130.485235*T-24.112392*T*LN(T)-2.65684E-3*T**2+0.129223E-6*T**3
+ +52478*T**(-1);  1357.77 Y
+ -13542.026+183.803828*T-31.38*T*LN(T)+364.167E27*T**(-9);  3200.00 N !
+ 
+FUNCTION GBCCCU 298.15 4017-1.255*T+GHSERCU; 3200 N !
+ 
+FUNCTION GHCPCU 298.15 600+0.2*T+GHSERCU; 3200 N !
+ 
+FUNCTION GLIQCU 298.15 12964.735-9.511904*T-584.89E-23*T**7+GHSERCU; 1357.77 Y
+ -46.545+173.881484*T-31.38*T*LN(T); 3200 N !
+
+$ Fe
+$ -------------------------------------
+FUNCTION GHSERFE  298.15
+ 1225.7+124.134*T-23.5143*T*LN(T)-4.39752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -25383.581+299.31255*T-46*T*LN(T)+2296.03E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GFCCFE   298.15
+ -236.7+132.416*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -27097.3963+300.252559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GLIQFE 298.15 12040.17-6.55843*T-367.516E-23*T**7+GHSERFE; 1811 Y
+ -10838.83+291.302*T-46*T*LN(T);  6000.00 N !
+ 
+FUNCTION GHCPFE   298.15
+ -2480.08+136.725*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1);  1811.00 Y
+ -29340.776+304.561559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LIQUID
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : AL,CU,FE : !
+
+PARAM G(LIQUID,AL;0) 298.15 GLIQAL; 6000 N !
+PARAM G(LIQUID,CU;0) 298.15 GLIQCU; 6000 N !
+PARAM G(LIQUID,FE;0) 298.15 GLIQFE; 6000 N !
+
+PARAM G(LIQUID,AL,CU;0) 298.15 -66622 + 8.1*T; 6000 N !
+PARAM G(LIQUID,AL,CU;1) 298.15 46800 - 90.8*T + 10*T*LOG(T); 6000 N !
+PARAM G(LIQUID,AL,CU;2) 298.15 -2812; 6000 N !
+
+PARAM G(LIQUID,AL,FE;0) 298.15 -91976.5 + 22.1314*T; 6000 N !
+PARAM G(LIQUID,AL,FE;1) 298.15 -5672.58 + 4.8728*T; 6000 N !
+PARAM G(LIQUID,AL,FE;2) 298.15 121.9; 6000 N !
+
+PARAM G(LIQUID,CU,FE;0) 298.15 36088 - 2.32968*T; 6000 N !
+PARAM G(LIQUID,CU,FE;1) 298.15 324.53 - 0.0327*T; 6000 N !
+PARAM G(LIQUID,CU,FE;2) 298.15 10355.4 - 3.60297*T; 6000 N !
+
+PARAM G(LIQUID,AL,CU,FE;0) 298.15 -28836 + 10.57665*T; 6000 N !
+PARAM G(LIQUID,AL,CU,FE;1) 298.15 -43967 + 7.47667*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FCC_A1
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION ( GES A_P_D FCC_A1 MAGNETIC -3.0 0.28 !
+PHASE FCC_A1 %( 2 1 1 !
+CONSTITUENT FCC_A1 : AL,CU,FE : VA : !
+
+PARAM G(FCC_A1,AL:VA;0) 298.15 GHSERAL; 6000 N !
+PARAM G(FCC_A1,CU:VA;0) 298.15 GHSERCU; 6000 N !
+PARAM G(FCC_A1,FE:VA;0) 298.15 GFCCFE; 6000 N !
+PARAM TC(FCC_A1,FE:VA;0) 298.15 -201; 6000 N !
+PARAM BM(FCC_A1,FE:VA;0) 298.15 -2.10; 6000 N !
+
+PARAM G(FCC_A1,AL,CU:VA;0) 298.15 -53520 + 2*T; 6000 N !
+PARAM G(FCC_A1,AL,CU:VA;1) 298.15 38590 - 2*T; 6000 N !
+PARAM G(FCC_A1,AL,CU:VA;2) 298.15 1170; 6000 N !
+
+PARAM G(FCC_A1,AL,FE:VA;0) 298.15 -76066.1 + 18.6758*T; 6000 N !
+PARAM G(FCC_A1,AL,FE:VA;1) 298.15 21167.4 + 1.3398*T; 6000 N !
+
+PARAM G(FCC_A1,CU,FE:VA;0) 298.15 48232.5 - 8.60954*T; 6000 N !
+PARAM G(FCC_A1,CU,FE:VA;1) 298.15 8861.88 - 5.28975*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_A2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION & GES A_P_D BCC_A2 MAGNETIC -1.0 0.4 !
+PHASE BCC_A2 %& 2 1 3 !
+CONSTITUENT BCC_A2 : AL,CU,FE,VA : VA : !
+
+PARAM G(BCC_A2,AL:VA;0) 298.15 GBCCAL; 6000 N !
+PARAM G(BCC_A2,CU:VA;0) 298.15 GBCCCU; 6000 N !
+PARAM G(BCC_A2,FE:VA;0) 298.15 GHSERFE; 6000 N !
+PARAM TC(BCC_A2,FE:VA;0) 298.15 1043; 6000 N !
+PARAM BM(BCC_A2,FE:VA;0) 298.15 2.22; 6000 N !
+
+PARAM G(BCC_A2,AL,CU:VA;0) 298.15 -73537 + 3.98*T; 6000 N !
+PARAM G(BCC_A2,AL,CU:VA;1) 298.15 51693 - 12*T; 6000 N !
+
+PARAM G(BCC_A2,AL,FE:VA;0) 298.15 4*(-30740 + 7.9972*T); 6000 N !
+PARAM G(BCC_A2,AL,FE:VA;1) 298.15 2945.2; 6000 N !
+PARAM TC(BCC_A2,AL,FE:VA;0) 298.15 504; 6000 N !
+
+PARAM G(BCC_A2,CU,FE:VA;0) 298.15 39258 - 4.14983*T; 6000 N !
+
+PARAM G(BCC_A2,AL,VA:VA;0) 298.15 160000 - T; 6000 N !
+PARAM G(BCC_A2,CU,VA:VA;0) 298.15 100000; 6000 N !
+PARAM G(BCC_A2,FE,VA:VA;0) 298.15 150000; 6000 N !
+
+PARAM G(BCC_A2,AL,CU,FE:VA;0) 298.15 -267841 + 131.45655*T; 6000 N !
+PARAM G(BCC_A2,AL,CU,FE:VA;1) 298.15 -103924 + 69.91943*T; 6000 N !
+PARAM G(BCC_A2,AL,CU,FE:VA;2) 298.15 -29249; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_B2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION B GES A_P_D BCC_B2 MAGNETIC -1.0 0.4 !
+TYPE_DEFINITION C GES A_P_D BCC_B2 DIS_PART BCC_A2 !
+PHASE BCC_B2 %BC 3 0.5 0.5 3 !
+CONSTITUENT BCC_B2 : AL,CU,FE,VA : AL,CU,FE,VA : VA : !
+
+PARAM G(BCC_B2,AL:VA:VA;0) 298.15 (-140000 - T) / 2; 6000 N !
+PARAM G(BCC_B2,VA:AL:VA;0) 298.15 (-140000 - T) / 2; 6000 N !
+
+PARAM G(BCC_B2,AL:CU:VA;0) 298.15 -10000; 6000 N !
+PARAM G(BCC_B2,CU:AL:VA;0) 298.15 -10000; 6000 N !
+
+PARAM G(BCC_B2,AL:FE:VA;0) 298.15 -1720*8.314; 6000 N !
+PARAM G(BCC_B2,FE:AL:VA;0) 298.15 -1720*8.314; 6000 N !
+
+PARAM G(BCC_B2,AL,FE:CU:VA;0) 298.15 -30837; 6000 N !
+PARAM G(BCC_B2,CU:AL,FE:VA;0) 298.15 -30837; 6000 N !
+
+PARAM G(BCC_B2,CU,FE:AL:VA;0) 298.15 -31874; 6000 N !
+PARAM G(BCC_B2,AL:CU,FE:VA;0) 298.15 -31874; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL13FE4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL13FE4 % 3 0.6275 0.235 0.1375 !
+CONSTITUENT AL13FE4 : AL,CU : FE : AL,VA : !
+
+PARAM G(AL13FE4,AL:FE:AL;0) 298.15 0.765*GHSERAL + 0.235*GHSERFE +
+    -30814.4 + 7.44*T; 6000 N !
+PARAM G(AL13FE4,AL:FE:VA;0) 298.15 0.6275*GHSERAL + 0.235*GHSERFE + 
+    -27781.3 + 7.2566*T; 6000 N !
+PARAM G(AL13FE4,CU:FE:AL;0) 298.15 0.6275*GHSERCU + 0.235*GHSERFE +
+    0.1375*GHSERAL - 7525; 6000 N !
+PARAM G(AL13FE4,CU:FE:VA;0) 298.15 0.6275*GHSERCU + 0.235*GHSERFE; 6000 N !
+PARAM G(AL13FE4,AL,CU:FE:AL;0) 298.15 -14845; 6000 N !
+PARAM G(AL13FE4,AL,CU:FE:VA;0) 298.15 -14845; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL5FE2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL5FE2 % 2 5 2 !
+CONSTITUENT AL5FE2 : AL,CU : FE : !
+
+PARAM G(AL5FE2,AL:FE;0) 298.15 5*GHSERAL + 2*GHSERFE +
+    -228250 + 48.99503*T; 6000 N !
+PARAM G(AL5FE2,CU:FE;0) 298.15 5*GHSERCU + 2*GHSERFE; 6000 N !
+PARAM G(AL5FE2,AL,CU:FE;0) 298.15 -161000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL2FE
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL2FE % 2 2 1 !
+CONSTITUENT AL2FE : AL,CU : FE : !
+
+PARAM G(AL2FE,AL:FE;0) 298.15 2*GHSERAL + GHSERFE +
+    -99526 + 19.811*T; 6000 N !
+PARAM G(AL2FE,CU:FE;0) 298.15 2*GHSERCU + GHSERFE; 6000 N !
+PARAM G(AL2FE,AL,CU:FE;0) 298.15 -69000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           AL5FE4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE AL5FE4 % 1 1 !
+CONSTITUENT AL5FE4 : AL,FE : !
+
+PARAM G(AL5FE4,AL;0) 298.15 GHSERAL + 12178.9 - 4.813*T; 6000 N !
+PARAM G(AL5FE4,FE;0) 298.15 GHSERFE + 5009.03; 6000 N !
+
+PARAM G(AL5FE4,AL,FE;0) 298.15 -131649 + 29.4833*T; 6000 N !
+PARAM G(AL5FE4,AL,FE;1) 298.15 -18619.5; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           DELTA
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DELTA % 2 2 3 !
+CONSTITUENT DELTA : AL : CU : !
+
+PARAM G(DELTA,AL:CU;0) 298.15 2*GHSERAL + 3*GHSERCU +
+    -106700 + 3*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           EPSILON
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE EPSILON % 2 1 1 !
+CONSTITUENT EPSILON : AL,CU : CU : !
+
+PARAM G(EPSILON,AL:CU;0) 298.15 GHSERAL + GHSERCU + 
+    -36976 + 1.2*T; 6000 N !
+PARAM G(EPSILON,CU:CU;0) 298.15 2*GBCCCU; 6000 N !
+
+PARAM G(EPSILON,AL,CU:CU;0) 298.15 7600 - 24*T; 6000 N !
+PARAM G(EPSILON,AL,CU:CU;1) 298.15 -72000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           ETA
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE ETA % 2 1 1 !
+CONSTITUENT ETA : AL,CU : CU : !
+
+PARAM G(ETA,AL:CU;0) 298.15 GHSERAL + GHSERCU + 
+    -40560 + 3.14*T; 6000 N !
+PARAM G(ETA,CU:CU;0) 298.15 2*GBCCCU; 6000 N !
+
+PARAM G(ETA,AL,CU:CU;0) 298.15 -25740 - 20*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           XI
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE XI % 2 9 11 !
+CONSTITUENT XI : AL : CU : !
+
+PARAM G(XI,AL:CU;0) 298.15 9*GHSERAL + 11*GHSERCU +
+    -420000 + 18*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           THETA
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE THETA % 2 2 1 !
+CONSTITUENT THETA : AL : AL,CU : !
+
+PARAM G(THETA,AL:AL;0) 298.15 3*GBCCAL; 6000 N !
+PARAM G(THETA,AL:CU;0) 298.15 2*GHSERAL + GHSERCU +
+    -47406 + 6.75*T; 6000 N !
+
+PARAM G(THETA,AL:AL,CU;0) 298.15 2211; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA_1
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA_1 % 3 4 1 8 !
+CONSTITUENT GAMMA_1 : AL : AL,CU : CU,FE : !
+
+PARAM G(GAMMA_1,AL:AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU +
+    -300716 + 390*T - 52*T*LOG(T); 6000 N !
+PARAM G(GAMMA_1,AL:CU:CU;0) 298.15 4*GHSERAL + 9*GHSERCU +
+    -280501 + 379.6*T - 52*T*LOG(T); 6000 N !
+PARAM G(GAMMA_1,AL:AL:FE;0) 298.15 5*GHSERAL + 8*GHSERFE + 
+    -150000; 6000 N !
+PARAM G(GAMMA_1,AL:CU:FE;0) 298.15 4*GHSERAL + GHSERCU + 8*GHSERFE +
+    -100000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA_0 % 3 4 1 8 !
+CONSTITUENT GAMMA_0 : AL : AL,CU : CU : !
+
+PARAM G(GAMMA_0,AL:AL:CU;0) 298.15 5*GHSERAL + 8*GHSERCU +
+    -219258 - 45.5*T; 6000 N !
+PARAM G(GAMMA_0,AL:CU:CU;0) 298.15 4*GHSERAL + 9*GHSERCU +
+    -200460 - 58.5*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           OMEGA
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE OMEGA % 3 1 2 7 !
+CONSTITUENT OMEGA : FE : CU : AL : !
+
+PARAM G(OMEGA,FE:CU:AL;0) 298.15 GHSERFE + 2*GHSERCU + 7*GHSERAL +
+    -197545 + 0.23633*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           PHI
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE PHI % 3 1 10 10 !
+CONSTITUENT PHI : FE : AL,CU : AL : !
+
+PARAM G(PHI,FE:CU:AL;0) 298.15 GHSERFE + 10*GHSERCU + 10*GHSERAL +
+    -502570 + 37.016*T; 6000 N !
+PARAM G(PHI,FE:AL:AL;0) 298.15 GHSERFE + 20*GHSERAL; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           TAU_1
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE TAU_1 % 3 0.125 0.255 0.620 !
+CONSTITUENT TAU_1 : FE : AL,CU : AL : !
+
+PARAM G(TAU_1,FE:CU:AL;0) 298.15 0.125*GHSERFE + 0.255*GHSERCU + 
+    0.620*GHSERAL - 23849 + 0.52727*T; 6000 N !
+PARAM G(TAU_1,FE:AL:AL;0) 298.15 0.125*GHSERFE + 0.875*GHSERAL +
+    -8876; 6000 N !

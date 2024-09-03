@@ -1,15 +1,14 @@
 """
-Script to plot a binary and save to pictures folder
+Script to plot a ternary and save to pictures folder
 """
-DATABASE = "Cu-Fe-Si_Soldi_2019.tdb"
-COMPONENTS = ["CU", "FE", "SI", "VA"]
+DATABASE = "Al-Cu-Fe-Mg-Si.tdb"
+COMPONENTS = ["AL", "CU", "FE", "VA"]
 PHASES = None
-#PHASES = ['LIQUID', 'FCC_A1', 'GAMMA', 'GAMMA_2', 'EPSILON', 'EPSILON_2', 'TAU', 'DELTA', 'BCC_B2']
 
-TEMPERATURE = 1350+273
+TEMPERATURE = 1000+273
 PRESSURE = 101325
 X = "CU"
-Y = "SI"
+Y = "AL"
 
 SAVE_FIGURE = False
 
@@ -18,14 +17,16 @@ import os
 import matplotlib.pyplot as plt
 from pycalphad import Database, variables as v
 from pycalphad.plot import triangular
+from pycalphad.core.utils import unpack_species, filter_phases
 from pycalphad.mapping import TernaryStrategy, plot_ternary
 
 db = Database('databases/' + DATABASE)
+PHASES = filter_phases(db, unpack_species(db, COMPONENTS))
 
 conds = {v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): (0, 1, 0.01), v.X(Y): (0, 1, 0.01)}
 
 db_path = os.path.join("databases", DATABASE)
-strategy = TernaryStrategy(db_path, COMPONENTS, PHASES, conds, GLOBAL_MIN_NUM_CANDIDATES=1000)
+strategy = TernaryStrategy(db_path, COMPONENTS, PHASES, conds, GLOBAL_MIN_NUM_CANDIDATES=10000)
 #strategy.add_nodes_from_conditions({v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): 0.3, v.X(Y):0.3})
 strategy.initialize()
 strategy.do_map()

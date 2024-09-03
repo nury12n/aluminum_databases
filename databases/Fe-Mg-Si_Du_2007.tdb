@@ -1,0 +1,247 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ FE-MG-SI
+$ Y. Du, J.R. Zhao, C. Zhang, H.L. Chen, L.J. Zhang, Journal of Mining
+$ and Metallurgy 43B (2007) 39
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT FE   BCC_A2                    5.5847E+01  4.4890E+03  2.7280E+01 !
+ELEMENT MG   HCP_A3                    2.4305E+01  4.9980E+03  3.2671E+01 !
+ELEMENT SI   DIAMOND_A4                2.8085E+01  3.2175E+03  1.8820E+01 !
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+
+$ Fe
+$ -------------------------------------
+FUNCTION GHSERFE  298.15
+ 1225.7+124.134*T-23.5143*T*LN(T)-4.39752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -25383.581+299.31255*T-46*T*LN(T)+2296.03E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GFCCFE   298.15
+ -236.7+132.416*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -27097.3963+300.252559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+ 
+FUNCTION GLIQFE 298.15 12040.17-6.55843*T-367.516E-23*T**7+GHSERFE; 1811 Y
+ -10838.83+291.302*T-46*T*LN(T);  6000.00 N !
+ 
+FUNCTION GHCPFE   298.15
+ -2480.08+136.725*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1);  1811.00 Y
+ -29340.776+304.561559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+
+$ Mg
+$ -------------------------------------
+FUNCTION GHSERMG  298.15
+ -8367.34+143.675547*T-26.1849782*T*LN(T)+0.4858E-3*T**2-1.393669E-6*T**3
+ +78950*T**(-1);   923.00 Y
+ -14130.185+204.716215*T-34.3088*T*LN(T)+1038.192E25*T**(-9);  3000.00 N !
+ 
+FUNCTION GLIQMG 298.15 8202.243-8.83693*T-80.176E-21*T**7+GHSERMG; 923 Y
+ -5439.869+195.324057*T-34.3088*T*LN(T);  3000.00 N !
+ 
+FUNCTION GFCCMG 298.15 2600-0.9*T+GHSERMG; 3000 N !
+ 
+FUNCTION GBCCMG 298.15 3100-2.1*T+GHSERMG; 3000 N !
+
+$ Si
+$ -------------------------------------
+FUNCTION GHSERSI  298.15
+ -8162.609+137.236859*T-22.8317533*T*LN(T)-1.912904E-3*T**2-0.003552E-6*T**3
+ +176667*T**(-1);  1687.00 Y
+ -9457.642+167.281367*T-27.196*T*LN(T)-420.369E28*T**(-9);  3600.00 N !
+ 
+FUNCTION GLIQSI 298.15 50696.36-30.099439*T+209.307E-23*T**7+GHSERSI; 1687 Y
+ 40370.523+137.722298*T-27.196*T*LN(T);  3600.00 N !
+ 
+FUNCTION GBCCSI 298.15 47000-22.5*T+GHSERSI; 3600 N !
+ 
+FUNCTION GFCCSI 298.15 51000-21.8*T+GHSERSI; 3600 N !
+ 
+FUNCTION GHCPSI 298.15 49200-20.8*T+GHSERSI; 3600 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ BCC_A2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION & GES A_P_D BCC_A2 MAGNETIC -1.0 0.4 !
+PHASE BCC_A2 %& 2 1 3 !
+CONSTITUENT BCC_A2 : FE,MG,SI : VA : !
+
+PARAM G(BCC_A2,FE:VA;0) 298.15 GHSERFE; 6000 N UNA50 !
+PARAM G(BCC_A2,MG:VA;0) 298.15 GBCCMG; 6000 N UNA50 !
+PARAM G(BCC_A2,SI:VA;0) 298.15 GBCCSI; 6000 N UNA50 !
+PARAMETER TC(BCC_A2,FE:VA;0) 298.15 1043; 6000 N UNA50 !
+PARAMETER BM(BCC_A2,FE:VA;0) 298.15 2.22; 6000 N UNA50 !
+ 
+PARAM G(BCC_A2,FE,MG:VA;0) 298.15 65700; 6000 N COST !
+
+PARAM G(BCC_A2,CU,FE:VA;0) 298.15 39258 - 4.14983*T; 6000 N COST !
+
+PARAM G(BCC_A2,FE,SI:VA;0) 298.15 4*(-27809 + 11.62*T) +
+    - 4*1260*8.314; 6000 N COST !
+PARAM G(BCC_A2,FE,SI:VA;1) 298.15 -8*11544; 6000 N COST !
+PARAM G(BCC_A2,FE,SI:VA;2) 298.15 16*3890; 6000 N COST !
+PARAM TC(BCC_A2,FE,SI:VA;0) 298.15 8*63; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_B2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION B GES A_P_D BCC_B2 MAGNETIC -1.0 0.4 !
+TYPE_DEFINITION C GES A_P_D BCC_B2 DIS_PART BCC_A2 !
+PHASE BCC_B2 %BC 3 0.5 0.5 3 !
+CONSTITUENT BCC_B2 : FE,MG,SI : FE,MG,SI : VA : !
+
+PARAM G(BCC_B2,FE:SI:VA;0) 298.15 -2*1260*8.314; 6000 N COST !
+PARAM G(BCC_B2,SI:FE:VA;0) 298.15 -2*1260*8.314; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ FCC_A1
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION ( GES A_P_D FCC_A1 MAGNETIC -3.0 0.28 !
+PHASE FCC_A1 %( 2 1 1 !
+CONSTITUENT FCC_A1 : FE,MG,SI : VA : !
+
+PARAM G(FCC_A1,FE:VA;0) 298.15 GFCCFE; 6000 N UNA50 !
+PARAM G(FCC_A1,MG:VA;0) 298.15 GFCCMG; 6000 N UNA50 !
+PARAM G(FCC_A1,SI:VA;0) 298.15 GFCCSI; 6000 N UNA50 !
+PARAM TC(FCC_A1,FE:VA;0) 298.15 -201; 6000 N UNA50 !
+PARAM BM(FCC_A1,FE:VA;0) 298.15 -2.10; 6000 N UNA50 !
+ 
+PARAM G(FCC_A1,FE,MG:VA;0) 298.15 65200; 6000 N COST !
+
+PARAM G(FCC_A1,FE,SI:VA;0) 298.15 -125247.7 + 41.166*T; 6000 N COST !
+PARAM G(FCC_A1,FE,SI:VA;1) 298.15 -142707.6; 6000 N COST !
+PARAM G(FCC_A1,FE,SI:VA;2) 298.15 89907.3; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ HCP_A3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE HCP_A3 % 2 1 0.5 !
+CONSTITUENT HCP_A3 : FE,MG,SI : VA : !
+
+PARAM G(HCP_A3,FE:VA;0) 298.15 GHCPFE; 6000 N UNA50 !
+PARAM G(HCP_A3,MG:VA;0) 298.15 GHSERMG; 6000 N UNA50 !
+PARAM G(HCP_A3,SI:VA;0) 298.15 GHCPSI; 6000 N UNA50 !
+
+PARAM G(HCP_A3,FE,MG:VA;0) 298.15 92400; 6000 N COST !
+
+PARAM G(HCP_A3,MG,SI:VA;0) 298.15 -7148.79 + 0.894*T; 6000 N KEV04 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ LIQUID
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : FE,MG,SI : !
+
+PARAM G(LIQUID,FE;0) 298.15 GLIQFE; 6000 N UNA50 !
+PARAM G(LIQUID,MG;0) 298.15 GLIQMG; 6000 N UNA50 !
+PARAM G(LIQUID,SI;0) 298.15 GLIQSI; 6000 N UNA50 !
+
+PARAM G(LIQUID,FE,MG;0) 298.15 61343 + 1.5*T; 6000 N COST !
+PARAM G(LIQUID,FE,MG;1) 298.15 -2700; 6000 N COST !
+
+PARAM G(LIQUID,MG,SI;0) 298.15 -70055 + 24.98*T; 6000 N KEV04 !
+PARAM G(LIQUID,MG,SI;1) 298.15 -1300; 6000 N KEV04 !
+PARAM G(LIQUID,MG,SI;2) 298.15 6272; 6000 N KEV04 !
+
+PARAM G(LIQUID,FE,SI;0) 298.15 -164434.6 + 41.9773*T; 6000 N COST !
+PARAM G(LIQUID,FE,SI;1) 298.15 -21.523*T; 6000 N COST !
+PARAM G(LIQUID,FE,SI;2) 298.15 -18821.542 + 22.07*T; 6000 N COST !
+PARAM G(LIQUID,FE,SI;3) 298.15 9695.8; 6000 N COST !
+
+PARAM G(LIQUID,FE,MG,SI;0) 298.15 -62000; 6000 N DU07 !
+PARAM G(LIQUID,FE,MG,SI;1) 298.15 -102000; 6000 N DU07 !
+PARAM G(LIQUID,FE,MG,SI;2) 298.15 -65000; 6000 N DU07 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ DIAMOND_A4
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DIAMOND_A4 % 1 1 !
+CONSTITUENT DIAMOND_A4 : SI : !
+
+PARAM G(DIAMOND_A4,SI;0) 298.15 GHSERSI; 6000 N UNA50 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ MG2SI
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE MG2SI % 2 2 1 !
+CONSTITUENT MG2SI : MG : SI : !
+
+PARAM G(MG2SI,MG:SI;0) 298.15 2*GHSERMG + GHSERSI +
+    -64110 + 14.868*T; 6000 N KEV04 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FE2SI
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FE2SI % 2 2 1 !
+CONSTITUENT FE2SI : FE : SI : !
+
+PARAM G(FE2SI,FE:SI;0) 298.15 2*GHSERFE + GHSERSI + 
+    -71256.6 - 10.62*T; 6000 N COST !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FE5SI3
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FE5SI3 % 2 5 3 !
+CONSTITUENT FE5SI3 : FE : SI : !
+
+PARAM G(FE5SI3,FE:SI;0) 298.15 5*GHSERFE + 3*GHSERSI + 
+    -241144 + 2.16*T; 6000 N COST DU07 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI % 2 1 1 !
+CONSTITUENT FESI : FE : MG,SI : !
+
+PARAM G(FESI,FE:SI;0) 298.15 GHSERFE + GHSERSI + 
+    -72761.2 + 4.44*T; 6000 N COST !
+
+PARAM G(FESI,FE:MG;0) 298.15 GHSERFE + GHSERMG +
+    3000; 6000 N DU07 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI2_H
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI2_H % 2 3 7 !
+CONSTITUENT FESI2_H : FE : MG,SI : !
+
+PARAM G(FESI2_H,FE:SI;0) 298.15 3*GHSERFE + 7*GHSERSI + 
+    -196490 - 9.2*T; 6000 N COST !
+
+PARAM G(FESI2_H,FE:MG;0) 298.15 3*GHSERFE + 7*GHSERMG +
+    3540; 6000 N DU07 !
+
+PARAM G(FESI2_H,FE:MG,SI;0) 298.15 -240000; 6000 N DU07 !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FESI2_L
+$ Aliases:         
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE FESI2_L % 2 1 2 !
+CONSTITUENT FESI2_L : FE : SI : !
+
+PARAM G(FESI2_L,FE:SI;0) 298.15 GHSERFE + 2*GHSERSI + 
+    -82149 + 10.44*T; 6000 N COST !

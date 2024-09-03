@@ -89,10 +89,10 @@ FUNCTION GHCPSI 298.15 49200-20.8*T+GHSERSI; 3600 N !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           AL13FE4
-$ Aliases:         
-$ Space group:     
+$ Aliases:         AL3FE
+$ Space group:     C2/m
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  mC102
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE AL13FE4 % 3 0.6275 0.235 0.1375 !
@@ -108,10 +108,10 @@ PARAM G(AL13FE4,AL:FE:SI;0) 298.15 0.6273*GHSERAL + 0.235*GHSERFE +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           AL2FE
 $ Aliases:         
-$ Space group:     
+$ Space group:     P1
 $ Strukturbericht: 
-$ Pearson symbol:  
-$ Prototype:       
+$ Pearson symbol:  aP18
+$ Prototype:       Al2Fe
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE AL2FE % 2 2 1 !
 CONSTITUENT AL2FE : AL : FE : !
@@ -122,9 +122,9 @@ PARAM G(AL2FE,AL:FE;0) 298.15 2*GHSERAL + GHSERFE +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           AL5FE2
 $ Aliases:         
-$ Space group:     
+$ Space group:     Cmcm
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  oC*
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE AL5FE2 % 2 5 2 !
@@ -135,10 +135,10 @@ PARAM G(AL5FE2,AL:FE;0) 298.15 5*GHSERAL + 2*GHSERFE +
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           AL5FE4
-$ Aliases:         
+$ Aliases:         EPSILON
 $ Space group:     
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  cI16?
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE AL5FE4 % 1 1 !
@@ -151,7 +151,7 @@ PARAM G(AL5FE4,AL,FE;1) 298.15 -18619.5; 6000 N LIU99 !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           ALPHA
-$ Aliases:         
+$ Aliases:         TAU_5, K_5, BETA, M
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -168,10 +168,10 @@ PARAM G(ALPHA,AL:FE:SI:SI;0) 298.15 0.66*GHSERAL + 0.19*GHSERFE +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           BCC_A2
 $ Aliases:         
-$ Space group:     
+$ Space group:     Im-3m
 $ Strukturbericht: 
-$ Pearson symbol:  
-$ Prototype:       
+$ Pearson symbol:  cI2
+$ Prototype:       W
 $
 $ Notes: Parameters for BCC_A2 and BCC_B2 for Fe-Si were taken directly
 $ from the Cost 507 database. These are from the same original assessment
@@ -202,10 +202,10 @@ PARAM TC(BCC_A2,FE,SI:VA;0) 298.15 8*63; 6000 N COST !
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           BCC_B2
 $ Aliases:         
-$ Space group:     
+$ Space group:     Pm-3m
 $ Strukturbericht: 
-$ Pearson symbol:  
-$ Prototype:       
+$ Pearson symbol:  cP2
+$ Prototype:       CsCl
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 TYPE_DEFINITION B GES A_P_D BCC_B2 MAGNETIC -1.0 0.4 !
 TYPE_DEFINITION C GES A_P_D BCC_B2 DIS_PART BCC_A2 !
@@ -220,7 +220,7 @@ PARAM G(BCC_B2,SI:FE:VA;0) 298.15 -2*1260*8.314; 6000 N COST !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           BETA
-$ Aliases:         
+$ Aliases:         TAU_6, K_6, X, L
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -237,7 +237,7 @@ PARAM G(BETA,AL:FE:SI:AL,SI;0) 298.15 -2821; 6000 N LIU99 !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           DELTA
-$ Aliases:         
+$ Aliases:         TAU_4, K_4, A
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -267,10 +267,10 @@ PARAM G(DIAMOND_A4,AL,SI;0) 298.15 111417.7 - 46.1392*T; 6000 N LIU99 !
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FCC_A1
 $ Aliases:         
-$ Space group:     
+$ Space group:     Fm-3m
 $ Strukturbericht: 
-$ Pearson symbol:  
-$ Prototype:       
+$ Pearson symbol:  cF4
+$ Prototype:       Cu
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 TYPE_DEFINITION ( GES A_P_D FCC_A1 MAGNETIC -3.0 0.28 !
 PHASE FCC_A1 %( 2 1 1 !
@@ -294,9 +294,9 @@ PARAM G(FCC_A1,FE,SI:VA;2) 298.15 89907.3; 6000 N LIU99 !
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FE2SI
 $ Aliases:         
-$ Space group:     
+$ Space group:     P-3m1
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  hP6
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FE2SI % 2 2 1 !
@@ -308,9 +308,9 @@ PARAM G(FE2SI,FE:SI;0) 298.15 2*GHSERFE + GHSERSI +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FE5SI3
 $ Aliases:         
-$ Space group:     
+$ Space group:     P6_3/mmc
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  hP16
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FE5SI3 % 2 5 3 !
@@ -322,9 +322,9 @@ PARAM G(FE5SI3,FE:SI;0) 298.15 5*GHSERFE + 3*GHSERSI +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FESI
 $ Aliases:         
-$ Space group:     
+$ Space group:     P2_13
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  cP8
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FESI % 2 1 1 !
@@ -336,9 +336,9 @@ PARAM G(FESI,FE:SI;0) 298.15 GHSERFE + GHSERSI +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FESI2_H
 $ Aliases:         
-$ Space group:     
+$ Space group:     Cmca
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  oC48
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FESI2_H % 2 3 7 !
@@ -352,9 +352,9 @@ PARAM G(FESI2_H,FE:AL;0) 298.15 3*GHSERFE + 7*GHSERAL +
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           FESI2_L
 $ Aliases:         
-$ Space group:     
+$ Space group:     P4/mmm
 $ Strukturbericht: 
-$ Pearson symbol:  
+$ Pearson symbol:  tP3
 $ Prototype:       
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 PHASE FESI2_L % 2 1 2 !
@@ -367,7 +367,7 @@ PARAM G(FESI2_L,FE:AL;0) 298.15 GHSERFE + 2*GHSERAL +
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           GAMMA
-$ Aliases:         
+$ Aliases:         K
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -413,7 +413,7 @@ PARAM G(LIQUID,AL,FE,SI;2) 298.15 -62178 + 63.727*T; 6000 N LIU99 !
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           TAU
-$ Aliases:         
+$ Aliases:         AL8FE5SI7, B
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -427,7 +427,7 @@ PARAM G(TAU,AL:FE:SI;0) 298.15 0.4*GHSERAL + 0.25*GHSERFE + 0.35*GHSERSI +
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           TAU_1
-$ Aliases:         
+$ Aliases:         K_1, C, D, E
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
@@ -441,7 +441,7 @@ PARAM G(TAU_1,AL:FE:SI;0) 298.15 0.35*GHSERAL + 0.37*GHSERFE +
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $ Phase:           TAU_23
-$ Aliases:         
+$ Aliases:         TAU_2, TAU_3, K_2, K_3, F, G
 $ Space group:     
 $ Strukturbericht: 
 $ Pearson symbol:  
