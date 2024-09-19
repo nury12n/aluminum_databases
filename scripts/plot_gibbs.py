@@ -3,6 +3,7 @@ from pycalphad import Workspace, Database, variables as v
 from pycalphad.property_framework.metaproperties import IsolatedPhase
 import matplotlib.pyplot as plt
 
+FOLDER = "databases_ternary"
 DATABASE = "Al-Fe-Si_Liu_1999.tdb"
 COMPONENTS = ["FE", "SI", "VA"]
 PHASES = ['LIQUID', 'BCC_A2', 'FCC_A1']
@@ -12,7 +13,7 @@ PRESSURE = 101325
 X = "SI"
 
 conditions = {v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): (0, 1, 0.01)}
-wks = Workspace(os.path.join('databases', DATABASE), COMPONENTS, PHASES, conditions=conditions)
+wks = Workspace(os.path.join(FOLDER, DATABASE), COMPONENTS, PHASES, conditions=conditions)
 
 fig = plt.figure()
 ax = fig.add_subplot()

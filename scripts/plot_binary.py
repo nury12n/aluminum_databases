@@ -1,14 +1,15 @@
 """
 Script to plot a binary and save to pictures folder
 """
-DATABASE = "Al-Cu-Fe-Mg-Si.tdb"
-COMPONENTS = ["FE", "SI", "VA"]
+FOLDER = "databases_ternary"
+DATABASE = "Cu-Fe-Zn_Miettinen_2008.tdb"
+COMPONENTS = ["FE", "ZN", "VA"]
 PHASES = None
 
 TEMPERATURE_LIMITS = [300, 4000]
 TEMPERATURE_STEP = 10
 PRESSURE = 101325
-X = "SI"
+X = "ZN"
 
 SAVE_FIGURE = False
 
@@ -20,7 +21,7 @@ from pycalphad.mapping import BinaryStrategy, plot_binary
 
 conds = {v.T: (TEMPERATURE_LIMITS[0], TEMPERATURE_LIMITS[1], TEMPERATURE_STEP), v.P: PRESSURE, v.X(X): (0, 1, 0.01)}
 
-db_path = os.path.join("databases", DATABASE)
+db_path = os.path.join(FOLDER, DATABASE)
 strategy = BinaryStrategy(db_path, COMPONENTS, PHASES, conds)
 strategy.initialize()
 strategy.do_map()

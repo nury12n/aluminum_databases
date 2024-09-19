@@ -1,14 +1,15 @@
 """
 Script to plot a ternary and save to pictures folder
 """
-DATABASE = "Al-Cu-Fe-Mg-Si.tdb"
-COMPONENTS = ["AL", "CU", "FE", "VA"]
+FOLDER = "databases_ternary"
+DATABASE = "Cu-Fe-Zn_Miettinen_2008.tdb"
+COMPONENTS = ["CU", "FE", "ZN", "VA"]
 PHASES = None
 
 TEMPERATURE = 1000+273
 PRESSURE = 101325
-X = "CU"
-Y = "AL"
+X = "FE"
+Y = "ZN"
 
 SAVE_FIGURE = False
 
@@ -20,12 +21,9 @@ from pycalphad.plot import triangular
 from pycalphad.core.utils import unpack_species, filter_phases
 from pycalphad.mapping import TernaryStrategy, plot_ternary
 
-db = Database('databases/' + DATABASE)
-PHASES = filter_phases(db, unpack_species(db, COMPONENTS))
-
 conds = {v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): (0, 1, 0.01), v.X(Y): (0, 1, 0.01)}
 
-db_path = os.path.join("databases", DATABASE)
+db_path = os.path.join(FOLDER, DATABASE)
 strategy = TernaryStrategy(db_path, COMPONENTS, PHASES, conds, GLOBAL_MIN_NUM_CANDIDATES=10000)
 #strategy.add_nodes_from_conditions({v.T: TEMPERATURE, v.P: PRESSURE, v.X(X): 0.3, v.X(Y):0.3})
 strategy.initialize()

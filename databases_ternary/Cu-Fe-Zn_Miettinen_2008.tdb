@@ -1,0 +1,273 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Cu-Fe-Zn
+$ J. Miettinen, "Thermodynamic description of the Cu-Fe-Zn system"
+$ Calphad 32 (2008) 514
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01 !
+ELEMENT FE   BCC_A2                    5.5847E+01  4.4890E+03  2.7280E+01 !
+ELEMENT ZN   HCP_A3                    6.5390E+01  5.6568E+03  4.1631E+01 !
+
+TYPE_DEFINITION % SEQ *!
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+
+$ Cu
+$ -------------------------------------
+ FUNCTION GHSERCU  298.15
+ -7770.458+130.485235*T-24.112392*T*LN(T)-2.65684E-3*T**2+0.129223E-6*T**3
+ +52478*T**(-1);  1357.77 Y
+ -13542.026+183.803828*T-31.38*T*LN(T)+364.167E27*T**(-9);  3200.00 N !
+ 
+ FUNCTION GBCCCU 298.15 4017-1.255*T+GHSERCU; 3200 N !
+ 
+ FUNCTION GHCPCU 298.15 600+0.2*T+GHSERCU; 3200 N !
+ 
+ FUNCTION GLIQCU 298.15 12964.735-9.511904*T-584.89E-23*T**7+GHSERCU; 1357.77 Y
+ -46.545+173.881484*T-31.38*T*LN(T); 3200 N !
+
+$ Fe
+$ -------------------------------------
+ FUNCTION GHSERFE  298.15
+ 1225.7+124.134*T-23.5143*T*LN(T)-4.39752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -25383.581+299.31255*T-46*T*LN(T)+2296.03E28*T**(-9);  6000.00 N !
+ 
+ FUNCTION GFCCFE   298.15
+ -236.7+132.416*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1); 1811 Y
+ -27097.3963+300.252559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+ 
+ FUNCTION GLIQFE 298.15 12040.17-6.55843*T-367.516E-23*T**7+GHSERFE; 1811 Y
+ -10838.83+291.302*T-46*T*LN(T);  6000.00 N !
+ 
+ FUNCTION GHCPFE   298.15
+ -2480.08+136.725*T-24.6643*T*LN(T)-3.75752E-3*T**2-0.058927E-6*T**3
+ +77359*T**(-1);  1811.00 Y
+ -29340.776+304.561559*T-46*T*LN(T)+2788.54E28*T**(-9);  6000.00 N !
+
+$ Zn
+$ -------------------------------------
+ FUNCTION GHSERZN  298.15
+ -7285.787+118.470069*T-23.701314*T*LN(T)-1.712034E-3*T**2-1.264963E-6*T**3;
+  692.677 Y
+ -11070.546+172.345644*T-31.38*T*LN(T)+470.47E24*T**(-9);  1700.00 N !
+
+ FUNCTION GHCPZN 298.15 2969.82-1.56968*T+GHSERZN; 1700 N !
+ 
+ FUNCTION GLIQZN 298.15 7157.222-10.29305*T-358.949E-21*T**7+GHSERZN; 692.677 Y
+ -3620.385+161.60854*T-31.38*T*LN(T); 1700 N !
+ 
+ FUNCTION GFCCZN 298.15 2969.82-1.56968*T+GHSERZN; 1700 N !
+ 
+ FUNCTION GBCCZN 298.15 2886.96-2.5104*T+GHSERZN; 1700 N !
+$ -------------------------------------
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           LIQUID
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE LIQUID % 1 1 !
+CONSTITUENT LIQUID : CU,FE,ZN : !
+
+PARAM G(LIQUID,CU;0) 298.15 GLIQCU; 6000 N !
+PARAM G(LIQUID,FE;0) 298.15 GLIQFE; 6000 N !
+PARAM G(LIQUID,ZN;0) 298.15 GLIQZN; 6000 N !
+
+PARAM G(LIQUID,CU,FE;0) 298.15 36270 - 2.78*T; 6000 N !
+PARAM G(LIQUID,CU,FE;1) 298.15 -8181 + 5.223*T; 6000 N !
+PARAM G(LIQUID,CU,FE;2) 298.15 16635 - 7.434*T; 6000 N !
+
+PARAM G(LIQUID,CU,ZN;0) 298.15 -40696 + 12.653*T; 6000 N !
+PARAM G(LIQUID,CU,ZN;1) 298.15 4403 - 6.554*T; 6000 N !
+PARAM G(LIQUID,CU,ZN;2) 298.15 7818 - 3.254*T; 6000 N !
+
+PARAM G(LIQUID,FE,ZN;0) 298.15 58088 - 23.665*T; 6000 N !
+PARAM G(LIQUID,FE,ZN;1) 298.15 92219 - 55.584*T; 6000 N !
+PARAM G(LIQUID,FE,ZN;2) 298.15 13570; 6000 N !
+
+PARAM G(LIQUID,CU,FE,ZN;0) 298.15 120000 - 95*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           FCC_A1
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION ( GES A_P_D FCC_A1 MAGNETIC -3.0 0.28 !
+PHASE FCC_A1 %( 2 1 1 !
+CONSTITUENT FCC_A1 : CU,FE,ZN : VA : ! 
+
+PARAM G(FCC_A1,CU:VA;0) 298.15 GHSERCU; 6000 N !
+PARAM G(FCC_A1,FE:VA;0) 298.15 GFCCFE; 6000 N !
+PARAM G(FCC_A1,ZN:VA;0) 298.15 GFCCZN; 6000 N !
+PARAM TC(FCC_A1,FE:VA;0) 298.15 -201; 6000 N !
+PARAM BM(FCC_A1,FE:VA;0) 298.15 -2.10; 6000 N !
+
+PARAM G(FCC_A1,CU,FE:VA;0) 298.15 53360 - 12.626*T; 6000 N !
+PARAM G(FCC_A1,CU,FE:VA;1) 298.15 11512 - 7.095*T; 6000 N !
+
+PARAM G(FCC_A1,CU,ZN:VA;0) 298.15 -42804 + 10.023*T; 6000 N !
+PARAM G(FCC_A1,CU,ZN:VA;1) 298.15 2936 - 3.053*T; 6000 N !
+PARAM G(FCC_A1,CU,ZN:VA;2) 298.15 9034 - 5.393*T; 6000 N !
+
+PARAM G(FCC_A1,FE,ZN:VA;0) 298.15 6935 + 4.212*T; 6000 N !
+PARAM G(FCC_A1,FE,ZN:VA;0) 298.15 691; 6000 N !
+
+PARAM G(FCC_A1,CU,FE,ZN:VA;0) 298.15 68000 - 40*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           BCC_A2
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+TYPE_DEFINITION & GES A_P_D BCC_A2 MAGNETIC -1.0 0.4 !
+PHASE BCC_A2 %& 2 1 3 !
+CONSTITUENT BCC_A2 : CU,FE,ZN : VA : !
+
+PARAM G(BCC_A2,CU:VA;0) 298.15 GBCCCU; 6000 N !
+PARAM G(BCC_A2,FE:VA;0) 298.15 GHSERFE; 6000 N !
+PARAM G(BCC_A2,ZN:VA;0) 298.15 GBCCZN; 6000 N !
+PARAM TC(BCC_A2,FE:VA;0) 298.15 1043; 6000 N !
+PARAM BM(BCC_A2,FE:VA;0) 298.15 2.22; 6000 N !
+
+PARAM G(BCC_A2,CU,FE:VA;0) 298.15 41033 - 6.022*T; 6000 N !
+
+PARAM G(BCC_A2,CU,ZN:VA;0) 298.15 -51596 + 13.064*T; 6000 N !
+PARAM G(BCC_A2,CU,ZN:VA;1) 298.15 7562 - 6.454*T; 6000 N !
+PARAM G(BCC_A2,CU,ZN:VA;2) 298.15 30744 - 29.915*T; 6000 N !
+
+PARAM G(BCC_A2,FE,ZN:VA;0) 298.15 -10494 + 18.299*T; 6000 N !
+PARAM G(BCC_A2,FE,ZN:VA;1) 298.15 15513 - 12.608*T; 6000 N !
+
+PARAM G(BCC_A2,CU,FE,ZN:VA;0) 298.15 99000 - 50*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA % 1 1 !
+CONSTITUENT GAMMA : CU,FE,ZN : !
+
+PARAM G(GAMMA,CU;0) 298.15 GHSERCU + 10; 6000 N !
+PARAM G(GAMMA,FE;0) 298.15 GHSERFE + 10; 6000 N !
+PARAM G(GAMMA,ZN;0) 298.15 GHSERZN + 10; 6000 N !
+
+PARAM G(GAMMA,CU,FE;0) 298.15 50000; 6000 N !
+
+PARAM G(GAMMA,CU,ZN;0) 298.15 -39470 + 9.436*T; 6000 N !
+PARAM G(GAMMA,CU,ZN;1) 298.15 36675 - 5.196*T; 6000 N !
+PARAM G(GAMMA,CU,ZN;2) 298.15 90163 - 32.62*T; 6000 N !
+
+PARAM G(GAMMA,FE,ZN;0) 298.15 100000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           HCP_A3
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE HCP_A3 % 2 1 0.5 !
+CONSTITUENT HCP_A3 : CU,FE,ZN : VA : !
+
+PARAM G(HCP_A3,CU:VA;0) 298.15 GHCPCU; 6000 N !
+PARAM G(HCP_A3,FE:VA;0) 298.15 GHCPFE; 6000 N !
+PARAM G(HCP_A3,ZN:VA;0) 298.15 GHCPZN; 6000 N !
+
+PARAM G(HCP_A3,CU,FE:VA;0) 298.15 53360 - 12.6*T; 6000 N !
+
+PARAM G(HCP_A3,CU,ZN:VA;0) 298.15 -36475 + 4.896*T; 6000 N !
+PARAM G(HCP_A3,CU,ZN:VA;1) 298.15 24790 - 10.135*T; 6000 N !
+
+PARAM G(HCP_A3,FE,ZN:VA;0) 298.15 50000; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           HCP_ZN
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE HCP_ZN % 2 1 0.5 !
+CONSTITUENT HCP_ZN : CU,FE,ZN : VA : !
+
+PARAM G(HCP_ZN,CU:VA;0) 298.15 GHCPCU; 6000 N !
+PARAM G(HCP_ZN,FE:VA;0) 298.15 GHCPFE; 6000 N !
+PARAM G(HCP_ZN,ZN:VA;0) 298.15 GHSERZN; 6000 N !
+
+PARAM G(HCP_ZN,CU,FE:VA;0) 298.15 50000; 6000 N !
+
+PARAM G(HCP_ZN,CU,ZN:VA;0) 298.15 -14432 - 10.781*T; 6000 N !
+
+PARAM G(HCP_ZN,FE,ZN:VA;0) 298.15 12786; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA_FEZN
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA_FEZN % 2 10 16 !
+CONSTITUENT GAMMA_FEZN : FE,ZN : ZN : !
+
+PARAM G(GAMMA_FEZN,FE:ZN;0) 298.15 10*GHSERFE + 16*GHSERZN + 
+    -153249.3 + 61.5738*T; 6000 N !
+PARAM G(GAMMA_FEZN,ZN:ZN;0) 298.15 26*GHSERZN + 5000; 6000 N !
+PARAM G(GAMMA_FEZN,FE,ZN:ZN;0) 298.15 -214641.2 + 180.1403*T; 6000 N !
+PARAM G(GAMMA_FEZN,FE,ZN:ZN;1) 298.15 -283546.1 + 372.9637*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           GAMMA_1_FEZN
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE GAMMA_1_FEZN % 2 14 12 !
+CONSTITUENT GAMMA_1_FEZN : FE,ZN : ZN : !
+
+PARAM G(GAMMA_1_FEZN,FE:ZN;0) 298.15 14*GHSERFE + 12*GHSERZN + 
+    -9321.7 + 65.7506*T; 6000 N !
+PARAM G(GAMMA_1_FEZN,ZN:ZN;0) 298.15 26*GHSERZN + 5000; 6000 N !
+PARAM G(GAMMA_1_FEZN,FE,ZN:ZN;0) 298.15 -718977.1 + 499.6564*T; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           DELTA_FEZN
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE DELTA_FEZN % 3 2 4 20 !
+CONSTITUENT DELTA_FEZN : FE : FE,ZN : ZN : !
+
+PARAM G(DELTA_FEZN,FE:FE:ZN;0) 298.15 6*GHSERFE + 20*GHSERZN; 6000 N !
+PARAM G(DELTA_FEZN,FE:ZN:ZN;0) 298.15 2*GHSERFE + 24*GHSERZN +
+    -91951.4 + 16.8387*T; 6000 N !
+PARAM G(DELTA_FEZN,FE:FE,ZN:ZN;0) 298.15 -315871.2 + 163.0428*T; 6000 N !
+PARAM G(DELTA_FEZN,FE:FE,ZN:ZN;1) 298.15 -92851.1; 6000 N !
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Phase:           XI_FEZN
+$ Space group:     
+$ Strukturbericht: 
+$ Pearson symbol:  
+$ Prototype:       
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+PHASE XI_FEZN % 2 1 13 !
+CONSTITUENT XI_FEZN : FE : ZN : !
+
+PARAM G(XI_FEZN,FE:ZN;0) 298.15 GHSERFE + 13*GHSERZN +
+    -45710 + 5.7618*T; 6000 N !

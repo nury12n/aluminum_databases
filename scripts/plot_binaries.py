@@ -1,6 +1,7 @@
 """
 Script to plot a all pair-wise combinations of a set of elements
 """
+FOLDER = 'databases_merged'
 DATABASE = "Al-Cu-Fe-Mg-Si.tdb"
 COMPONENTS = ["AL", "CU", "FE", "MG", "SI"]
 PHASES = None
@@ -19,7 +20,7 @@ for comps in combinations(COMPONENTS, 2):
     components = list(comps) + ["VA"]
     conds = {v.T: (TEMPERATURE_LIMITS[0], TEMPERATURE_LIMITS[1], TEMPERATURE_STEP), v.P: PRESSURE, v.X(components[1]): (0, 1, 0.01)}
 
-    db_path = os.path.join("databases", DATABASE)
+    db_path = os.path.join(FOLDER, DATABASE)
     strategy = BinaryStrategy(db_path, components, PHASES, conds)
     strategy.initialize()
     strategy.do_map()

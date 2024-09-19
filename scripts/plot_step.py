@@ -1,6 +1,7 @@
 """
 Script to plot a step diagram
 """
+FOLDER = "databases_merged"
 DATABASE = "Al-Cu-Fe-Mg-Si.tdb"
 COMPONENTS = ["AL", "FE", "MG", "SI", "VA"]
 PHASES = None
@@ -12,7 +13,7 @@ from pycalphad.mapping import StepStrategy, plot_step
 
 conds = {v.T: (500, 4000, 10), v.P: 101325, v.X("AL"): 0.4976, v.X("FE"): 0.00242, v.X("MG"): 0.0111}
 
-db_path = os.path.join("databases", DATABASE)
+db_path = os.path.join(FOLDER, DATABASE)
 strategy = StepStrategy(db_path, COMPONENTS, PHASES, conds)
 strategy.initialize()
 strategy.do_map()
